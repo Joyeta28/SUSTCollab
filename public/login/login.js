@@ -1,0 +1,32 @@
+const API = "/api/auth"
+
+document.getElementById("loginForm").addEventListener("submit",async (e)=>{
+    e.preventDefault();
+    const email = document.getElementById("email").value
+    const password = document.getElementById("password").value
+
+    const res = await fetch(`${API}/login`,{
+        method : "post",
+        headers: {
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify({
+            email,
+            password
+        })
+    })
+    const data = await res.json()
+    
+    if(data.token){
+        localStorage.setItem(
+            "token",
+            data.token
+        )
+        alert("Login Successful")
+
+        window.location.href ="/dashboard/userDashboard.html";
+    }
+    else{
+        alert(data.message)
+    }
+})

@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs")
 const db = require("../config/db")
+const jwt = require("jsonwebtoken")
 
 exports.register = (req,res)=>{
     const{full_name,email,password} = req.body
@@ -45,8 +46,24 @@ exports.login = (req,res)=>{
                     message : "Wrong password"
                 })
             }
+            const token = jwt.sign(
+                {
+                    id : user.id,
+                    email : user.email
+                },
+                process.env.JWT_SECRET,
+                {
+                    expiresIn : "1d"
+                }
+            )
             res.json({
-                message : "Login Successful"
+                message : "Login Successful",
+                token : token,
+                user : {
+                    id : user.id,
+                    full_name : user.full_name,
+                    email : user.email
+                }
             })
         }
     )

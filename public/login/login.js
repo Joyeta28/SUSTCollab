@@ -24,7 +24,7 @@ document.getElementById("loginForm").addEventListener("submit",async (e)=>{
         )
         alert("Login Successful")
 
-        window.location.href ="/dashboard/userDashboard.html";
+        window.location.href ="/homepage/home.html";
     }
     else{
         alert(data.message)

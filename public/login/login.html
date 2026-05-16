@@ -1,16 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User login</title>
+    <link rel="stylesheet" href="./login.css">
 </head>
+
 <body>
-    <form id="loginForm">
-        <input type="email" id="email" name="email" placeholder="Email"><br>
-        <input type="password" id="password" name="password" placeholder="Password">
-        <button type="submit">Login</button>
-    </form>
-    <script src="login.js"></script>
+    <div class="login-container">
+        <h1 class="logo">SUSTCollab</h1>
+        <p class="subtitle">
+            Login to continue collaborating
+        </p>
+        <form id="loginForm">
+            <input type="email" id="email" name="email" placeholder="Email"><br>
+            <input type="password" id="password" name="password" placeholder="Password"><br>
+            <button class="login-btn" type="submit">Login</button>
+        </form>
+        <div class="bottom-text">
+            Don't have an account?
+            <a href="../register/register.html">Register</a>
+        </div>
+    </div>
+        <script src="login.js"></script>
 </body>
+
 </html>

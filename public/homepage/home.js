@@ -1,20 +1,43 @@
-document.addEventListener("DOMContentLoaded", async ()=> {
+document.addEventListener("DOMContentLoaded", async () => {
     const token = localStorage.getItem("token");
-
-    const res = await fetch("/api/user", {
-        method: "GET",
-        headers: {
-            "Authorization": `Bearer ${token}`
-        }
-    });
-
-    if (res.status === 401) {
+    if (!token) {
         window.location.href = "/login/login.html";
         return;
     }
+    try {
+        const res = await fetch("/api/user/profile", {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
 
-    const data = await res.json();
+        if (res.status === 401 || res.status === 403) {
+            window.location.href = "/login/login.html";
+            return;
+        }
 
-    document.getElementById("UserName").innerText =
-        data.user.full_name;
+        const data = await res.json();
+
+        document.getElementById("UserName").innerText =  data.user.full_name;
+
+        const fullName = data.user.full_name;
+
+        const nameParts = fullName.trim().split(" ");
+
+        let initials = "";
+
+        nameParts.forEach(part => {
+            initials += part[0];
+        });
+
+        document.getElementById("sidebarAvatar").innerText = initials.toUpperCase();
+
+        document.getElementById("profile-link").addEventListener("click", () => {
+                window.location.href ="/profile/profile.html";
+        });
+
+    }catch (err) {
+        console.log(err);
+    }
 });

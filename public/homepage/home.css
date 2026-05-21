@@ -26,6 +26,7 @@ body {
     font-weight: bold;
     color: #1877f2;
     margin-bottom: 30px;
+    text-align: center ;
 }
 
 .profile {
@@ -33,10 +34,24 @@ body {
     margin-bottom: 30px;
 }
 
-.profile img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
+.profile-avatar{
+    width:120px;
+    height:120px;
+    background:#1877f2;
+    color:white;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:48px;
+    font-weight:bold;
+    margin:0 auto 20px auto;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
+
+h3{
+    color:black;
+    margin-bottom:5px;
 }
 
 .menu a {

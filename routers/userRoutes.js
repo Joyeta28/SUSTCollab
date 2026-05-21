@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 const verifyToken = require("../middleware/authMiddleware");
-const { getLoggedUser } = require("../controllers/userController");
+const { getLoggedUser,updateProfile } = require("../controllers/userController");
 
-router.get("/", verifyToken, getLoggedUser);
+router.get("/profile", verifyToken, getLoggedUser);
+router.put("/profile", verifyToken, updateProfile);
 
 module.exports = router;

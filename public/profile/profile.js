@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     const username = document.querySelector(".username");
     const email = document.querySelector(".email");
     const bio = document.querySelector(".about-text");
+    const regi_num = document.querySelector(".regi_num");
+    const dept = document.querySelector(".dept");
     const skillsContainer = document.querySelector(".skills");
     const avatar = document.querySelector(".profile-avatar");
     const editBtn = document.querySelector(".edit-btn");
@@ -30,6 +32,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         username.innerText = user.full_name || "No Name";
         email.innerText = user.email || "No Email";
+        regi_num.innerText = user.regi_num || "None";
+        dept.innerText = user.dept || "None";
         bio.innerText = user.bio ? user.bio : "+ Add Description";
         skillsContainer.innerHTML = "";
 

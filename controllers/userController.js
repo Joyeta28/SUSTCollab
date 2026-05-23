@@ -5,7 +5,7 @@ exports.getLoggedUser = (req, res) => {
     const userId = req.user.id;
 
     const sql = `
-        SELECT id, full_name, email, bio, skills
+        SELECT id, full_name, email, bio, skills,dept,regi_num
         FROM users
         WHERE id = ?
     `;
@@ -29,11 +29,7 @@ exports.updateProfile = (req, res) => {
 
     const userId = req.user.id;
 
-    const {
-        full_name,
-        bio,
-        skills
-    } = req.body;
+    const {full_name,bio,dept,regi_num,skills} = req.body;
 
     const sql = `
         UPDATE users
@@ -44,11 +40,9 @@ exports.updateProfile = (req, res) => {
     db.query(sql,
         [full_name, bio, skills, userId],
         (err) => {
-
             if (err) {
                 return res.status(500).json({ message: "Database error" });
             }
-
             res.json({ message: "Profile updated successfully" });
         }
     );

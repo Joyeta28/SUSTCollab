@@ -1,16 +1,37 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-body{
-    background:#f0f2f5;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:100vh;
+body {
+    background: #f0f2f5;
+    display: flex;
+    scroll-behavior: smooth;
+    overflow-y: auto;
+}
+
+.sidebar {
+    top: 0;
+    left: 0;
+    position: fixed;
+    height: 100vh;
+    width: 250px;
+    min-width: 250px;
+    background: #fff;
+    padding: 20px;
+    border-right: 1px solid #dddddd;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    color: #1877f2;
+    margin-bottom: 30px;
+    text-align: center ;
 }
 
 .profile-container{
@@ -64,9 +85,13 @@ body{
     color:#333;
 }
 
-.section p{
-    color:#555;
-    line-height:1.6;
+.section p {
+    color: #555;
+    line-height: 1.6;
+
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .skills{
@@ -76,11 +101,15 @@ body{
 }
 
 .skills span{
-    background:#1877f2;
+    background:#89b6f3;
     color:white;
     padding:8px 14px;
     border-radius:20px;
     font-size:14px;
+}
+
+.space{
+    margin-top: 10px;
 }
 
 .edit-btn{
@@ -98,3 +127,103 @@ body{
 .edit-btn:hover{
     background:#166fe5;
 }
+
+.main {
+    margin-left: 250px;
+    padding: 20px;
+    width: 100%;
+}
+
+.topbar {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-box {
+    width: 600px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.filter-btn{
+    background: #1877f2;
+    color: white;
+    border: none;
+    margin-left: 120px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.create-btn {
+    background: #1877f2;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+
+.feed {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+
+.post-card {
+    width: 100%;
+    max-width: 100%;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.post-header img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.post-title {
+    margin: 10px 0;
+}
+
+
+.buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.details-btn {
+    background: #e4e6eb;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.request-btn {
+    background: #1877f2;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+

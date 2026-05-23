@@ -14,9 +14,9 @@ body {
 }
 
 .register-container {
-    width: 420px;
+    width: 440px;
     background: white;
-    padding: 35px;
+    padding: 30px;
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
@@ -40,10 +40,14 @@ body {
     flex-direction: column;
 }
 
-input {
+label {
+    color: #333;
+}
+
+select,input {
     width: 100%;
     padding: 12px;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     border: 1px solid #ccc;
     border-radius: 10px;
     outline: none;

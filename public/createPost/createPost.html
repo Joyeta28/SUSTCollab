@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Post - SUSTCollab</title>
+    <link rel="stylesheet" href="createPost.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Create a Post</h2>
+
+    <form id="postForm">
+
+        <input type="text" id="title" placeholder="Project Title" required>
+
+        <textarea id="description" placeholder="Description" required></textarea>
+
+        <select id="category">
+            <option value="Web Development">Web Development</option>
+            <option value="Mobile App">Mobile App</option>
+            <option value="AI/ML">AI/ML</option>
+            <option value="Database">Database</option>
+            <option value="Networking">Networking</option>
+        </select>
+
+        <input type="text" id="skills" placeholder="Required Skills">
+
+        <input type="number" id="teamSize" placeholder="Team Size">
+
+        <input type="text" id="course" placeholder="Course Title">
+
+        <input type="text" id="semester" placeholder="Semester">
+
+        <button type="submit">Create Post</button>
+
+    </form>
+
+</div>
+
+<script src="createPost.js"></script>
+
+</body>
+</html>

@@ -10,9 +10,12 @@ app.use(express.static("public"))
 
 const authRoutes = require("./routers/authRoutes")
 const userRoutes = require("./routers/userRoutes");
+const postRoutes = require("./routers/postRoutes");
+
 
 app.use("/api/auth",authRoutes)
 app.use("/api/user", userRoutes);
+app.use("/api/post", postRoutes);
 
 const db = require("./config/db")
 

@@ -82,7 +82,7 @@ body {
     background: #1877f2;
     color: white;
     border: none;
-    margin-left: 120px;
+    margin-left: 105px;
     padding: 10px 15px;
     border-radius: 8px;
     cursor: pointer;
@@ -95,6 +95,7 @@ body {
     padding: 10px 15px;
     border-radius: 8px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 

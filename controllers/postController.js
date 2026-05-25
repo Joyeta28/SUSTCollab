@@ -3,7 +3,6 @@ const db = require("../config/db");
 exports.createPost = async (req, res) => {
     try {
         const {title, description, category, required_skills, team_size, course_title, semester} = req.body;
-
         const user_id = req.user.id;
 
         const sql = `
@@ -18,6 +17,33 @@ exports.createPost = async (req, res) => {
         });
 
     } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            message: "Server error"
+        });
+    }
+};
+
+
+
+exports.getAllPosts = async (req, res) => {
+    try{
+        const sql = `SELECT posts.*, users.full_name
+            FROM posts
+            JOIN users ON posts.user_id = users.id
+            ORDER BY posts.created_at DESC`;
+
+         db.query(sql, (err, results) => {
+            if(err) {
+                console.log(err);
+                return res.status(500).json({
+                    message: "Database error"
+                });
+            }
+            res.status(200).json(results);
+        });
+
+    }catch(error) {
         console.log(error);
         res.status(500).json({
             message: "Server error"

@@ -15,7 +15,7 @@ const postRoutes = require("./routers/postRoutes");
 
 app.use("/api/auth",authRoutes)
 app.use("/api/user", userRoutes);
-app.use("/api/post", postRoutes);
+app.use("/api/posts", postRoutes);
 
 const db = require("./config/db")
 

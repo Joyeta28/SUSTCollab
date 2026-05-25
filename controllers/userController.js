@@ -47,3 +47,23 @@ exports.updateProfile = (req, res) => {
         }
     );
 };
+
+exports.deleteAccount = (req, res) => {
+
+    const userId = req.user.id;
+
+    const sql = "DELETE FROM users WHERE id = ?";
+
+    db.query(sql, [userId], (err) => {
+
+        if (err) {
+            return res.status(500).json({
+                message: "Database error"
+            });
+        }
+
+        res.json({
+            message: "Account deleted successfully"
+        });
+    });
+};

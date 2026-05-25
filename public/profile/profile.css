@@ -17,7 +17,7 @@ body {
     left: 0;
     position: fixed;
     height: 100vh;
-    width: 250px;
+    width: 280px;
     min-width: 250px;
     background: #fff;
     padding: 20px;
@@ -30,7 +30,7 @@ body {
     font-size: 26px;
     font-weight: bold;
     color: #1877f2;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     text-align: center ;
 }
 
@@ -46,7 +46,6 @@ body {
     padding:40px;
     border-radius:15px;
     box-shadow:0 4px 15px rgba(0,0,0,0.1);
-
     text-align:center;
 }
 
@@ -78,6 +77,54 @@ body {
 .section{
     text-align:left;
     margin-bottom:25px;
+}
+
+.section-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:5px;
+}
+
+.small-edit-btn{
+    background:#1877f2;
+    color:white;
+    border:none;
+    padding:5px 10px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:12px;
+}
+
+.small-edit-btn:hover{
+    background:#166fe5;
+}
+
+.hidden{
+    display:none;
+}
+
+.bio-edit-box,
+.skill-edit-box{
+    margin-top:5px;
+}
+
+.skill-input,.bio-input{
+    width:100%;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+.save-bio-btn,
+.save-skill-btn{
+    margin-top:10px;
+    background:#1877f2;
+    color:white;
+    border:none;
+    padding:8px 14px;
+    border-radius:6px;
+    cursor:pointer;
 }
 
 .section h3{
@@ -112,24 +159,8 @@ body {
     margin-top: 10px;
 }
 
-.edit-btn{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:10px;
-    background:#1877f2;
-    color:white;
-    font-size:16px;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.edit-btn:hover{
-    background:#166fe5;
-}
-
 .main {
-    margin-left: 250px;
+    margin-left: 280px;
     padding: 20px;
     width: 100%;
 }

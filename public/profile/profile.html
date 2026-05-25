@@ -13,27 +13,45 @@
         <div class="logo">SUSTCollab</div>
         <div class="profile-container">
 
-        <div class="profile-card">
-            <div class="profile-avatar"></div>
-            <h2 class="username">Test</h2>
-            <p class="email">test@gmail.com</p>
-            <div class="section">
-                <h3>About</h3>
-                <p  class="about-text"></p>
-            </div>
-            <div class="section">
-                <h3>Registration Number</h3>
-                <p class="regi_num"></p>
-            </div>
-            <div class="section">
-                <h3>Department</h3>
-                <p class="dept"></p>
-            </div>
-            <div class="section">
-                <h3>Skills</h3>
-                <div class="skills"></div>
+            <div class="profile-card">
+                <div class="profile-avatar"></div>
+                <h2 class="username">Test</h2>
+                <p class="email">test@gmail.com</p>
+                <div class="section">
+                    <div class="section-header">
+                        <h3>About</h3>
+                        <button class="small-edit-btn edit-bio-btn">
+                            Edit
+                        </button>
+                    </div>
+                    <p class="about-text"></p>
+                    <div class="bio-edit-box hidden">
+                        <textarea class="bio-input"></textarea>
+                        <button class="save-bio-btn">Save</button>
+                    </div>
+                </div>
+                <div class="section">
+                    <h3>Registration Number</h3>
+                    <p class="regi_num"></p>
+                </div>
+                <div class="section">
+                    <h3>Department</h3>
+                    <p class="dept"></p>
+                </div>
+                <div class="section">
+                    <div class="section-header">
+                        <h3>Skills</h3>
+                        <button class="small-edit-btn edit-skill-btn">
+                            Edit
+                        </button>
+                    </div>
+                    <div class="skills"></div>
+                    <div class="skill-edit-box hidden">
+                        <input type="text" class="skill-input" placeholder="HTML, CSS, JavaScript">
+                        <button class="save-skill-btn">Save</button>
+                    </div>
+                </div>
                 <div class="space"></div>
-                <button class="edit-btn">Edit Profile</button>
             </div>
         </div>
     </div>
@@ -55,24 +73,18 @@
                         <small>1 hour ago</small>
                     </div>
                 </div>
-
                 <h4 class="post-title">Backend Developer Needed</h4>
-
                 <p class="description">
                     Looking for a backend developer for AI-based recommendation system.
                 </p>
-
                 <p class="skills">
                     <b>Skills:</b> Node.js, Express, MySQL
                 </p>
-
                 <div class="buttons">
                     <button class="details-btn">View Details</button>
                     <button class="request-btn">Send Request</button>
                 </div>
-
             </div>
-
             <div class="post-card">
                 <div class="post-header">
                     <img src="https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg"
@@ -82,17 +94,13 @@
                         <small>1 hour ago</small>
                     </div>
                 </div>
-
                 <h4 class="post-title">Backend Developer Needed</h4>
-
                 <p class="description">
                     Looking for a backend developer for AI-based recommendation system.
                 </p>
-
                 <p class="skills">
                     <b>Skills:</b> Node.js, Express, MySQL
                 </p>
-
                 <div class="buttons">
                     <button class="details-btn">View Details</button>
                     <button class="request-btn">Send Request</button>
@@ -351,5 +359,3 @@
 </body>
 
 </html>
-
-

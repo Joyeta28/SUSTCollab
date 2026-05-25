@@ -14,7 +14,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     const dept = document.querySelector(".dept");
     const skillsContainer = document.querySelector(".skills");
     const avatar = document.querySelector(".profile-avatar");
-    const editBtn = document.querySelector(".edit-btn");
+
+    const editBioBtn = document.querySelector(".edit-bio-btn");
+    const editSkillBtn = document.querySelector(".edit-skill-btn");
+
+    const bioEditBox = document.querySelector(".bio-edit-box");
+    const skillEditBox = document.querySelector(".skill-edit-box");
+
+    const bioInput = document.querySelector(".bio-input");
+    const skillInput = document.querySelector(".skill-input");
+
+    const saveBioBtn = document.querySelector(".save-bio-btn");
+    const saveSkillBtn = document.querySelector(".save-skill-btn");
 
     let user = {};
 
@@ -64,31 +75,69 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
 
-    editBtn.addEventListener("click", async () => {
-
-        const newName = prompt("Full Name:", user.full_name);
-        const newBio = prompt("Bio:", user.bio || "");
-        const newSkills = prompt("Skills (comma separated):", user.skills || "");
-
-        if (newName) user.full_name = newName;
-        user.bio = newBio;
-        user.skills = newSkills;
-
-        await fetch("http://localhost:3001/api/user/profile", {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            },
-            body: JSON.stringify({
-                full_name: user.full_name,
-                bio: user.bio,
-                skills: user.skills
-            })
-        });
-
-        alert("Profile Updated!");
-        location.reload();
+    editBioBtn.addEventListener("click", () => {
+        bioEditBox.classList.toggle("hidden");
+        bioInput.value ="";
     });
 
+    editSkillBtn.addEventListener("click", () => {
+        skillEditBox.classList.toggle("hidden");
+        skillInput.value = user.skills || "";
+    });
+
+
+saveBioBtn.addEventListener("click", async () => {
+
+    user.bio = bioInput.value;
+
+    await fetch("http://localhost:3001/api/user/profile", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({
+            full_name: user.full_name || "",
+            bio: user.bio || "",
+            skills: user.skills || ""
+        })
+    });
+
+    bio.innerText = user.bio;
+
+    bioEditBox.classList.add("hidden");
+});
+
+
+
+saveSkillBtn.addEventListener("click", async () => {
+
+    user.skills = skillInput.value;
+
+    await fetch("http://localhost:3001/api/user/profile", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({
+            full_name: user.full_name || "",
+            bio: user.bio || "",
+            skills: user.skills || ""
+        })
+    });
+
+    skillsContainer.innerHTML = "";
+
+    user.skills.split(",").forEach(skill => {
+
+        const span = document.createElement("span");
+
+        span.innerText = skill.trim();
+
+        skillsContainer.appendChild(span);
+    });
+
+    skillEditBox.classList.add("hidden");
+});
 });

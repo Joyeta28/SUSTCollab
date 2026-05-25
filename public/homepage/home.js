@@ -1,5 +1,6 @@
+const token = localStorage.getItem("token");
+
 document.addEventListener("DOMContentLoaded", async () => {
-    const token = localStorage.getItem("token");
     if (!token) {
         window.location.href = "/login/login.html";
         return;
@@ -36,6 +37,32 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.getElementById("profile-link").addEventListener("click", () => {
                 window.location.href ="/profile/profile.html";
         });
+
+    }catch (err) {
+        console.log(err);
+    }
+});
+
+document.getElementById("delete-account")
+.addEventListener("click", async () => {
+
+    const confirmDelete = confirm(
+        "Are you sure you want to delete your account?"
+    );
+
+    if(!confirmDelete) return;
+    try {
+        const res = await fetch("/api/user/delete", {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        const data = await res.json();
+        alert(data.message);
+        localStorage.removeItem("token");
+        window.location.href = "/login/login.html";
 
     }catch (err) {
         console.log(err);

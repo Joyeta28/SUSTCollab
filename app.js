@@ -11,6 +11,7 @@ app.use(express.static("public"))
 const authRoutes = require("./routers/authRoutes")
 const userRoutes = require("./routers/userRoutes");
 
+
 app.use("/api/auth",authRoutes)
 app.use("/api/user", userRoutes);
 

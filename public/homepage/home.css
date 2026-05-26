@@ -97,7 +97,7 @@ h3{
     background: #1877f2;
     color: white;
     border: none;
-    margin-left: 120px;
+    margin-left: 105px;
     padding: 10px 15px;
     border-radius: 8px;
     cursor: pointer;
@@ -110,13 +110,20 @@ h3{
     padding: 10px 15px;
     border-radius: 8px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 
 .feed {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+    display: block;
+    
+}
+
+#post-container{
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(300px,1fr));
+    gap:20px;
 }
 
 
@@ -124,8 +131,11 @@ h3{
     background: white;
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(2, 2, 2, 0.1);
+    position: relative;
+    padding-bottom: 60px;
 }
+
 
 .post-header {
     display: flex;
@@ -134,25 +144,53 @@ h3{
     margin-bottom: 10px;
 }
 
-.post-header img {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
+
+.profile-pic{
+    width:45px;
+    height:45px;
+    border-radius:50%;
 }
 
-.post-title {
-    margin: 10px 0;
+.post-title{
+    display: -webkit-box;
+    margin-top: 10px;
+    -webkit-line-clamp: 1;   
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+.description {
+    display: -webkit-box;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    -webkit-line-clamp: 2;   
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+.skills{
+    display: -webkit-box;
+    margin-top: 5px;
+    -webkit-line-clamp: 1;   
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 
 .buttons {
     margin-top: 15px;
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .details-btn {
-    background: #e4e6eb;
+    background: #d8d9de;
     border: none;
     padding: 8px 12px;
     border-radius: 6px;
@@ -167,3 +205,9 @@ h3{
     border-radius: 6px;
     cursor: pointer;
 }
+
+
+
+
+
+

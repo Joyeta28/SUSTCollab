@@ -26,6 +26,7 @@ body {
     font-weight: bold;
     color: #1877f2;
     margin-bottom: 30px;
+    text-align: center ;
 }
 
 .profile {
@@ -33,10 +34,24 @@ body {
     margin-bottom: 30px;
 }
 
-.profile img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
+.profile-avatar{
+    width:120px;
+    height:120px;
+    background:#1877f2;
+    color:white;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:48px;
+    font-weight:bold;
+    margin:0 auto 20px auto;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
+
+h3{
+    color:black;
+    margin-bottom:5px;
 }
 
 .menu a {
@@ -82,7 +97,7 @@ body {
     background: #1877f2;
     color: white;
     border: none;
-    margin-left: 120px;
+    margin-left: 105px;
     padding: 10px 15px;
     border-radius: 8px;
     cursor: pointer;
@@ -95,13 +110,20 @@ body {
     padding: 10px 15px;
     border-radius: 8px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 
 .feed {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+    display: block;
+    
+}
+
+#post-container{
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(300px,1fr));
+    gap:20px;
 }
 
 
@@ -109,8 +131,11 @@ body {
     background: white;
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(2, 2, 2, 0.1);
+    position: relative;
+    padding-bottom: 60px;
 }
+
 
 .post-header {
     display: flex;
@@ -119,25 +144,53 @@ body {
     margin-bottom: 10px;
 }
 
-.post-header img {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
+
+.profile-pic{
+    width:45px;
+    height:45px;
+    border-radius:50%;
 }
 
-.post-title {
-    margin: 10px 0;
+.post-title{
+    display: -webkit-box;
+    margin-top: 10px;
+    -webkit-line-clamp: 1;   
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+.description {
+    display: -webkit-box;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    -webkit-line-clamp: 2;   
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+.skills{
+    display: -webkit-box;
+    margin-top: 5px;
+    -webkit-line-clamp: 1;   
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 
 .buttons {
     margin-top: 15px;
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .details-btn {
-    background: #e4e6eb;
+    background: #d8d9de;
     border: none;
     padding: 8px 12px;
     border-radius: 6px;
@@ -152,3 +205,9 @@ body {
     border-radius: 6px;
     cursor: pointer;
 }
+
+
+
+
+
+

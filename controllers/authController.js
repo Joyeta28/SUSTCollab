@@ -2,25 +2,51 @@ const bcrypt = require("bcryptjs")
 const db = require("../config/db")
 const jwt = require("jsonwebtoken")
 
-exports.register = (req,res)=>{
-    const{full_name,email,password} = req.body
+exports.register = (req, res) => {
+    const {
+        full_name,
+        email,
+        dept,
+        regi_num,
+        password
+    } = req.body
+
     db.query(
-        "SELECT * From users where email = ?",[email], async(err,result)=>{
-            if(result.length>0){
-                return res.json({
-                    message : "Email already registered"
+        `SELECT * 
+        FROM users
+        WHERE email = ?`,[email],
+        async (err, result) => {
+            if (err) {
+                return res.status(500).json({
+                    message: "Database error"
                 })
             }
-            const hashedPassword = await bcrypt.hash(password,10)
+            if (result.length > 0) {
+                return res.json({
+                    message: "Email already registered"
+                })
+            }
+            const hashedPassword =
+                await bcrypt.hash(password, 10)
 
             db.query(
-                "INSERT INTO users(full_name,email,password) VALUES(?,?,?)",[full_name,email,hashedPassword],
-                (err)=>{
-                    if(err){
-                        return res.json(err)
+                `INSERT INTO users (full_name, email, dept, regi_num, password) VALUES (?, ?, ?, ?, ?)`,
+                [   full_name,
+                    email,
+                    dept,
+                    regi_num,
+                    hashedPassword
+                ],
+                (err) => {
+                    if (err) {
+                        console.log(err)
+
+                        return res.status(500).json({
+                            message: "Registration failed"
+                        })
                     }
                     res.json({
-                        message :"Registration Successful"
+                        message: "Registration Successful"
                     })
                 }
             )
@@ -28,41 +54,43 @@ exports.register = (req,res)=>{
     )
 }
 
-exports.login = (req,res)=>{
-    const {email,password} = req.body
+exports.login = (req, res) => {
+    const { email, password } = req.body
     db.query(
-        "SELECT * FROM users WHERE email = ?",[email],async (err,result)=>{
-            if(result.length === 0){
+        `SELECT * 
+        FROM users 
+        WHERE email = ?`, [email], async (err, result) => {
+            if (result.length === 0) {
                 return res.json({
-                    message : "User not found"
+                    message: "User not found"
                 })
             }
             const user = result[0]
 
-            const match = await bcrypt.compare(password,user.password)
+            const match = await bcrypt.compare(password, user.password)
 
-            if(!match){
+            if (!match) {
                 return res.json({
-                    message : "Wrong password"
+                    message: "Wrong password"
                 })
             }
             const token = jwt.sign(
                 {
-                    id : user.id,
-                    email : user.email
+                    id: user.id,
+                    email: user.email
                 },
                 process.env.JWT_SECRET,
                 {
-                    expiresIn : "1d"
+                    expiresIn: "1d"
                 }
             )
             res.json({
-                message : "Login Successful",
-                token : token,
-                user : {
-                    id : user.id,
-                    full_name : user.full_name,
-                    email : user.email
+                message: "Login Successful",
+                token: token,
+                user: {
+                    id: user.id,
+                    full_name: user.full_name,
+                    email: user.email
                 }
             })
         }

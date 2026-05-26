@@ -1,0 +1,260 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f0f2f5;
+    display: flex;
+    scroll-behavior: smooth;
+    overflow-y: auto;
+}
+
+.sidebar {
+    top: 0;
+    left: 0;
+    position: fixed;
+    height: 100vh;
+    width: 280px;
+    min-width: 250px;
+    background: #fff;
+    padding: 20px;
+    border-right: 1px solid #dddddd;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    color: #1877f2;
+    margin-bottom: 10px;
+    text-align: center ;
+}
+
+.profile-container{
+    width:100%;
+    display:flex;
+    justify-content:center;
+}
+
+.profile-card{
+    width:450px;
+    background:white;
+    padding:40px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+    text-align:center;
+}
+
+.profile-avatar{
+    width:120px;
+    height:120px;
+    background:#1877f2;
+    color:white;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:48px;
+    font-weight:bold;
+    margin:0 auto 20px auto;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
+
+.username{
+    color:#1877f2;
+    margin-bottom:5px;
+}
+
+.email{
+    color:#666;
+    margin-bottom:25px;
+}
+
+.section{
+    text-align:left;
+    margin-bottom:25px;
+}
+
+.section-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:5px;
+}
+
+.small-edit-btn{
+    background:#1877f2;
+    color:white;
+    border:none;
+    padding:5px 10px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:12px;
+}
+
+.small-edit-btn:hover{
+    background:#166fe5;
+}
+
+.hidden{
+    display:none;
+}
+
+.bio-edit-box,
+.skill-edit-box{
+    margin-top:5px;
+}
+
+.skill-input,.bio-input{
+    width:100%;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+.save-bio-btn,
+.save-skill-btn{
+    margin-top:10px;
+    background:#1877f2;
+    color:white;
+    border:none;
+    padding:8px 14px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.section h3{
+    margin-bottom:10px;
+    color:#333;
+}
+
+.section p {
+    color: #555;
+    line-height: 1.6;
+
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.skills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.skills span{
+    background:#89b6f3;
+    color:white;
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:14px;
+}
+
+.space{
+    margin-top: 10px;
+}
+
+.main {
+    margin-left: 280px;
+    padding: 20px;
+    width: 100%;
+}
+
+.topbar {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-box {
+    width: 600px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.filter-btn{
+    background: #1877f2;
+    color: white;
+    border: none;
+    margin-left: 120px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.create-btn {
+    background: #1877f2;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+
+.feed {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+
+.post-card {
+    width: 100%;
+    max-width: 100%;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.post-header img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.post-title {
+    margin: 10px 0;
+}
+
+
+.buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.details-btn {
+    background: #e4e6eb;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.request-btn {
+    background: #1877f2;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+

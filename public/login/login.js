@@ -22,7 +22,6 @@ document.getElementById("loginForm").addEventListener("submit",async (e)=>{
             "token",
             data.token
         )
-        alert("Login Successful")
 
         window.location.href ="/homepage/home.html";
     }

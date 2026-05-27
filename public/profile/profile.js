@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     try {
 
-        const res = await fetch("http://localhost:3001/api/user/profile", {
+        const res = await fetch("/api/user/profile", {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`
@@ -90,7 +90,7 @@ saveBioBtn.addEventListener("click", async () => {
 
     user.bio = bioInput.value;
 
-    await fetch("http://localhost:3001/api/user/profile", {
+    await fetch("/api/user/profile", {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -114,7 +114,7 @@ saveSkillBtn.addEventListener("click", async () => {
 
     user.skills = skillInput.value;
 
-    await fetch("http://localhost:3001/api/user/profile", {
+    await fetch("/api/user/profile", {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",

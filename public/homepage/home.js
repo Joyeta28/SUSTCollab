@@ -67,8 +67,6 @@ document.getElementById("delete-account")
     }catch (err) {
         console.log(err);
     }
-    document.getElementById("UserName").innerText =
-        data.user.full_name;
 });
 
 let allPosts = [];

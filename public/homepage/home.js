@@ -43,6 +43,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 });
 
+document.getElementById("logout-btn")
+.addEventListener("click", () => {
+
+    const confirmLogout = confirm(
+        "Are you sure you want to logout?"
+    );
+
+    if (!confirmLogout) return;
+
+    localStorage.removeItem("token");
+
+    window.location.href = "/login/login.html";
+});
+
+
 document.getElementById("delete-account")
 .addEventListener("click", async () => {
 

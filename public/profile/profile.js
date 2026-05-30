@@ -175,6 +175,11 @@ async function loadPosts() {
                     <p class="skills">
                         <b>Skills:</b> ${post.required_skills}
                     </p>
+
+                    <div class="buttons">
+                        <a href="/postDetails/postDetails.html?id=${post.id}" class="details-btn">View Details</a>
+                        <button class="request-btn">See Requests</button>
+                    </div>
                 </div>
             `;
         });

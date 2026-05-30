@@ -208,6 +208,15 @@ h3{
 }
 
 
+.post-header button {
+    border: none;
+    cursor: pointer;
+    margin-left: auto; 
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+}
+
 
 
 

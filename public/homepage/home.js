@@ -105,6 +105,7 @@ async function loadPosts() {
                             <h3>${post.full_name}</h3>
                             <small> Status: ${post.status}</small>
                         </div>
+                        <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
 
                     </div>
 

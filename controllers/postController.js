@@ -129,3 +129,20 @@ exports.changeStatus = async(req, res) =>{
         res.json({message : "Status Changed", updatedStatus: status});
     });
 }
+
+
+exports.deletePost = async(req, res) => {
+    const post_id = req.params.id;
+
+    const sql = `DELETE FROM posts
+                WHERE id = ?`;
+
+    db.query(sql, [post_id], (err, result) => {
+        if(err){
+            console.log(err);
+            return res.status(500).json({message : "Database Error!"});
+        }
+
+        res.status(200).json(result);
+    });
+}

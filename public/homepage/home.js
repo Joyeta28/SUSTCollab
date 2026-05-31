@@ -188,3 +188,19 @@ async function changeStatus(id, currentStatus) {
         console.log(error);
     }
 }
+
+
+
+async function deletePost(id){
+    try{
+        const res = await fetch(`http://localhost:3001/api/posts/${id}`,{
+            method : "DELETE",
+            headers : {"Content-Type" : "application/json", "Authorization" : `Bearer ${token}`}        
+        });
+
+        if(res.ok)
+            loadPosts();
+    } catch(error){
+        console.log(error);
+    }
+}

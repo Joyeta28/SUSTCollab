@@ -103,6 +103,7 @@ async function loadPosts() {
 
         container.innerHTML = "";
 
+
         posts.forEach(post => {
             container.innerHTML += `
                 <div class="post-card">
@@ -127,7 +128,7 @@ async function loadPosts() {
                     <div class="buttons">
                         <a href="/postDetails/postDetails.html?id=${post.id}" class="details-btn">View Details</a>
                         ${
-                            post.user_id === loggedInUserID ? `<button class="request-btn">See Requests</button>` : 
+                            post.user_id === loggedInUserID ? /*`<button class="request-btn">See Requests</button>`*/ `` : 
                             `<button class="request-btn" id="requestbtn-${post.id}">Send Request</button>`
                         }
                     </div>

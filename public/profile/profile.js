@@ -1,6 +1,8 @@
+const token = localStorage.getItem("token");
+
 document.addEventListener("DOMContentLoaded", async () => {
 
-    const token = localStorage.getItem("token");
+    
 
     if (!token) {
         window.location.href = "/login/login.html";
@@ -163,9 +165,10 @@ async function loadPosts() {
                         <img src="https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg" class="profile-pic">
                         <div>
                             <h3>${post.full_name}</h3>
-                            <small>Status: ${post.status}</small>
+                            <small id="status-${post.id}">Status: ${post.status}</small>
                         </div>
-                        <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                        ${showMenu(post)}
+
                     </div>
                     <h3 class="post-title">${post.title}</h3>
                     <p class="description">
@@ -179,7 +182,7 @@ async function loadPosts() {
 
                     <div class="buttons">
                         <a href="/postDetails/postDetails.html?id=${post.id}" class="details-btn">View Details</a>
-                        <button class="request-btn">See Requests</button>
+                        <!--<button class="request-btn">See Requests</button>-->
                     </div>
                 </div>
             `;
@@ -192,3 +195,51 @@ async function loadPosts() {
 
 loadPosts();
 });
+
+
+
+
+
+function showMenu(post){
+    /*if(post.user_id
+        !== loggedInUserID){
+        return "";
+    }*/
+    return `<div class="menu-container">
+                <button class="menu-btn" onclick="toggleMenu(${post.id})"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+
+                <div id="menu-${post.id}" class="dropdown-menu">
+
+                    <button onclick="updatePost(${post.id})">Update</button>
+                    <button onclick="deletePost(${post.id})">Delete</button>
+                    <button onclick="changeStatus(${post.id}, '${post.status}')">Change Status</button>
+
+                </div>
+            </div>`;
+}
+
+
+function toggleMenu(id) {
+    const menu = document.getElementById(`menu-${id}`);
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+
+
+
+
+async function changeStatus(id, currentStatus) {
+    const newStatus = currentStatus === "open" ? "closed" : "open";
+    try {
+        const res = await fetch(`http://localhost:3001/api/posts/${id}/status`, {
+            method: "PUT",
+            headers: {"Content-Type": "application/json", "Authorization": `Bearer ${token}`},
+            body: JSON.stringify({status: newStatus})
+        });
+        if(res.ok){
+            document.getElementById(`status-${id}`).innerText = `Status: ${newStatus}`;
+        }
+
+    } catch(error){
+        console.log(error);
+    }
+}

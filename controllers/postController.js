@@ -108,3 +108,24 @@ exports.getMyPosts = async (req, res) => {
         });
     }
 };
+
+
+
+exports.changeStatus = async(req, res) =>{
+    const post_id = req.params.id;
+    const {status} = req.body;
+
+    if(!status){
+        return res.status(400).json({message: "Status Required!"});
+    }
+
+    const sql = `UPDATE posts SET status = ? WHERE id = ?`;
+    db.query(sql, [status, post_id], (err, result) => {
+        if (err){
+            console.log(err);
+            return res.status(500).json({message : "Database Error!"});
+        }
+
+        res.json({message : "Status Changed", updatedStatus: status});
+    });
+}

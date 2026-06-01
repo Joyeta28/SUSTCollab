@@ -145,16 +145,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         skillEditBox.classList.add("hidden");
     });
 
+
     async function loadPosts() {
         try {
             const res = await fetch(
-                "http://localhost:3001/api/posts/my-posts",
-                {
+                "http://localhost:3001/api/posts/my-posts", {
                     headers: {
                         "Authorization": `Bearer ${token}`
                     }
-                }
-            );
+            });
             const posts = await res.json();
             const container = document.getElementById("post-container");
             container.innerHTML = "";
@@ -170,6 +169,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                         ${showMenu(post)}
 
                     </div>
+                    <p><b>Post Code:</b> ${post.post_code}</p>
                     <h3 class="post-title">${post.title}</h3>
                     <p class="description">
                         ${post.description}
@@ -195,9 +195,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     loadPosts();
 });
-
-
-
 
 
 function showMenu(post) {
@@ -246,25 +243,25 @@ async function changeStatus(id, currentStatus) {
 
 const viewRequestsBtn =
     document.getElementById("viewRequestsBtn");
-    const requestModal = document.getElementById("requestModal");
-    const closeRequestBtn = document.getElementById("closeRequestBtn");
+const requestModal = document.getElementById("requestModal");
+const closeRequestBtn = document.getElementById("closeRequestBtn");
 
-    viewRequestsBtn.addEventListener("click",loadRequests);
+viewRequestsBtn.addEventListener("click", loadRequests);
 
-    closeRequestBtn.addEventListener("click", () => {
-        requestModal.classList.add("hidden");
-    }
+closeRequestBtn.addEventListener("click", () => {
+    requestModal.classList.add("hidden");
+}
 );
 
 
 async function loadRequests() {
     requestModal.classList.remove("hidden");
     try {
-        const res = await fetch("/api/requests/my-requests",{
-                headers: {
-                    Authorization:`Bearer ${token}`
-                }
+        const res = await fetch("/api/requests/my-requests", {
+            headers: {
+                Authorization: `Bearer ${token}`
             }
+        }
         );
 
         const requests = await res.json();
@@ -292,16 +289,32 @@ async function loadRequests() {
 
 async function acceptRequest(requestId) {
     try {
-        const res = await fetch(`/api/requests/accept/${requestId}`,{
-                method: "PUT", 
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+        const res = await fetch(`/api/requests/accept/${requestId}`, {
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${token}`
             }
+        }
         );
         const data = await res.json();
         alert(data.message);
         loadRequests();
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+
+async function deletePost(id) {
+    try {
+        const res = await fetch(`http://localhost:3001/api/posts/${id}`, {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+        });
+
+        if (res.ok)
+            loadPosts();
     } catch (error) {
         console.log(error);
     }

@@ -192,9 +192,7 @@ async function changeStatus(id, currentStatus) {
 async function sendRequest(postId) {
     const token = localStorage.getItem("token");
     try {
-        const res = await fetch(
-            "http://localhost:3001/api/requests/send",
-            {
+        const res = await fetch("http://localhost:3001/api/requests/send",{
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -211,5 +209,19 @@ async function sendRequest(postId) {
     } catch (error) {
         console.log(error);
         alert("Failed to send request");
+    }
+}
+
+async function deletePost(id){
+    try{
+        const res = await fetch(`http://localhost:3001/api/posts/${id}`,{
+            method : "DELETE",
+            headers : {"Content-Type" : "application/json", "Authorization" : `Bearer ${token}`}        
+        });
+
+        if(res.ok)
+            loadPosts();
+    } catch(error){
+        console.log(error);
     }
 }

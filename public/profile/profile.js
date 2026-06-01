@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     try {
 
-        const res = await fetch("http://localhost:3001/api/user/profile", {
+        const res = await fetch("/api/user/profile", {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         user.bio = bioInput.value;
 
-        await fetch("http://localhost:3001/api/user/profile", {
+        await fetch("/api/user/profile", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         user.skills = skillInput.value;
 
-        await fetch("http://localhost:3001/api/user/profile", {
+        await fetch("/api/user/profile", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     async function loadPosts() {
         try {
             const res = await fetch(
-                "http://localhost:3001/api/posts/my-posts", {
+                "/api/posts/my-posts", {
                     headers: {
                         "Authorization": `Bearer ${token}`
                     }
@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const container = document.getElementById("post-container");
             container.innerHTML = "";
             posts.forEach(post => {
-                container.innerHTML += 
+                container.innerHTML += `
                 <div class="post-card">
                     <div class="post-header">
                         <img src="https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg" class="profile-pic">
@@ -184,23 +184,24 @@ document.addEventListener("DOMContentLoaded", async () => {
                         <a href="/postDetails/postDetails.html?id=${post.id}" class="details-btn">View Details</a>
                         <button class="request-btn" onclick="viewRequests(${post.id})">See Requests</button>
                     </div>
-                </div>;
+                </div>`;
             });
 
         } catch (error) {
             console.log(error);
         }
     }
-    loadPosts();
+    
 });
 
+loadPosts();
 
 function showMenu(post) {
     /*if(post.user_id
         !== loggedInUserID){
         return "";
     }*/
-    return  <div class="menu-container">
+    return  `<div class="menu-container">
                 <button class="menu-btn" onclick="toggleMenu(${post.id})"><i class="fa-solid fa-ellipsis-vertical"></i></button>
 
                 <div id="menu-${post.id}" class="dropdown-menu">
@@ -210,7 +211,7 @@ function showMenu(post) {
                     <button onclick="changeStatus(${post.id}, '${post.status}')">Change Status</button>
 
                 </div>
-            </div>;
+            </div>`;
 }
 
 
@@ -220,12 +221,10 @@ function toggleMenu(id) {
 }
 
 
-
-
 async function changeStatus(id, currentStatus) {
     const newStatus = currentStatus === "open" ? "closed" : "open";
     try {
-        const res = await fetch(`http://localhost:3001/api/posts/${id}/status`, {
+        const res = await fetch(`/api/posts/${id}/status`, {
             method: "PUT",
             headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
             body: JSON.stringify({ status: newStatus })
@@ -271,11 +270,11 @@ async function loadRequests() {
         );
 
         const requests = await res.json();
-        requestTableBody.innerHTML = "";
+        const requestTableBody = document.getElementById("requestTableBody");
 
         requests.forEach(req => {
             requestTableBody.innerHTML += 
-            <tr>
+            `<tr>
                 <td>${req.post_code}</td>
                 <td>${req.full_name}</td>
                 <td>
@@ -285,7 +284,7 @@ async function loadRequests() {
                 <td>
                     <button class="accept-btn" onclick="acceptRequest(${req.id})"> Accept </button>
                 </td>
-            </tr>;
+            </tr>`;
         });
 
     } catch (error) {
@@ -340,7 +339,7 @@ async function loadSentRequests() {
 
 async function deletePost(id) {
     try {
-        const res = await fetch(`http://localhost:3001/api/posts/${id}`, {
+        const res = await fetch(`/api/posts/${id}`, {
             method: "DELETE",
             headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
         });

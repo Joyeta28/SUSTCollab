@@ -137,15 +137,13 @@ async function loadPosts() {
     }
 }
 
-loadPosts();
-
 
 function showMenu(post){
     if(post.user_id
         !== loggedInUserID){
         return "";
     }
-    return  <div class="menu-container">
+    return  `<div class="menu-container">
                 <button class="menu-btn" onclick="toggleMenu(${post.id})"><i class="fa-solid fa-ellipsis-vertical"></i></button>
 
                 <div id="menu-${post.id}" class="dropdown-menu">
@@ -155,7 +153,7 @@ function showMenu(post){
                     <button onclick="changeStatus(${post.id}, '${post.status}')">Change Status</button>
 
                 </div>
-            </div>;
+            </div>`;
 }
 
 
@@ -170,7 +168,7 @@ function toggleMenu(id) {
 async function changeStatus(id, currentStatus) {
     const newStatus = currentStatus === "open" ? "closed" : "open";
     try {
-        const res = await fetch(`http://localhost:3001/api/posts/${id}/status`, {
+        const res = await fetch(`/api/posts/${id}/status`, {
             method: "PUT",
             headers: {"Content-Type": "application/json", "Authorization": `Bearer ${token}`},
             body: JSON.stringify({status: newStatus})
@@ -187,7 +185,7 @@ async function changeStatus(id, currentStatus) {
 async function sendRequest(postId) {
     const token = localStorage.getItem("token");
     try {
-        const res = await fetch("http://localhost:3001/api/requests/send",{
+        const res = await fetch("/api/requests/send",{
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -209,7 +207,7 @@ async function sendRequest(postId) {
 
 async function deletePost(id){
     try{
-        const res = await fetch(`http://localhost:3001/api/posts/${id}`,{
+        const res = await fetch(`/api/posts/${id}`,{
             method : "DELETE",
             headers : {"Content-Type" : "application/json", "Authorization" : `Bearer ${token}`}        
         });

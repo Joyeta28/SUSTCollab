@@ -14,7 +14,7 @@ async function loadPost(){
 
                         <div>
                             <h3 class="userName">${post.full_name}</h3>
-                            <small>Status: ${post.status}</smal
+                            <small>Status: ${post.status}</small>
                         </div>
 
                     </div>

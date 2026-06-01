@@ -2,7 +2,7 @@ const token = localStorage.getItem("token");
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-    
+
 
     if (!token) {
         window.location.href = "/login/login.html";
@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     editBioBtn.addEventListener("click", () => {
         bioEditBox.classList.toggle("hidden");
-        bioInput.value ="";
+        bioInput.value = "";
     });
 
     editSkillBtn.addEventListener("click", () => {
@@ -90,76 +90,76 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
 
-saveBioBtn.addEventListener("click", async () => {
+    saveBioBtn.addEventListener("click", async () => {
 
-    user.bio = bioInput.value;
+        user.bio = bioInput.value;
 
-    await fetch("http://localhost:3001/api/user/profile", {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
-        },
-        body: JSON.stringify({
-            full_name: user.full_name || "",
-            bio: user.bio || "",
-            skills: user.skills || ""
-        })
+        await fetch("http://localhost:3001/api/user/profile", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                full_name: user.full_name || "",
+                bio: user.bio || "",
+                skills: user.skills || ""
+            })
+        });
+
+        bio.innerText = user.bio;
+
+        bioEditBox.classList.add("hidden");
     });
 
-    bio.innerText = user.bio;
-
-    bioEditBox.classList.add("hidden");
-});
 
 
+    saveSkillBtn.addEventListener("click", async () => {
 
-saveSkillBtn.addEventListener("click", async () => {
+        user.skills = skillInput.value;
 
-    user.skills = skillInput.value;
+        await fetch("http://localhost:3001/api/user/profile", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                full_name: user.full_name || "",
+                bio: user.bio || "",
+                skills: user.skills || ""
+            })
+        });
 
-    await fetch("http://localhost:3001/api/user/profile", {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
-        },
-        body: JSON.stringify({
-            full_name: user.full_name || "",
-            bio: user.bio || "",
-            skills: user.skills || ""
-        })
+        skillsContainer.innerHTML = "";
+
+        user.skills.split(",").forEach(skill => {
+
+            const span = document.createElement("span");
+
+            span.innerText = skill.trim();
+
+            skillsContainer.appendChild(span);
+        });
+
+        skillEditBox.classList.add("hidden");
     });
 
-    skillsContainer.innerHTML = "";
-
-    user.skills.split(",").forEach(skill => {
-
-        const span = document.createElement("span");
-
-        span.innerText = skill.trim();
-
-        skillsContainer.appendChild(span);
-    });
-
-    skillEditBox.classList.add("hidden");
-});
-
-async function loadPosts() {
-    try {
-        const res = await fetch(
-            "http://localhost:3001/api/posts/my-posts",
-            {
-                headers: {
-                    "Authorization": `Bearer ${token}`
+    async function loadPosts() {
+        try {
+            const res = await fetch(
+                "http://localhost:3001/api/posts/my-posts",
+                {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
                 }
-            }
-        );
-        const posts = await res.json();
-        const container = document.getElementById("post-container");
-        container.innerHTML = "";
-        posts.forEach(post => {
-            container.innerHTML += `
+            );
+            const posts = await res.json();
+            const container = document.getElementById("post-container");
+            container.innerHTML = "";
+            posts.forEach(post => {
+                container.innerHTML += `
                 <div class="post-card">
                     <div class="post-header">
                         <img src="https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg" class="profile-pic">
@@ -186,21 +186,21 @@ async function loadPosts() {
                     </div>
                 </div>
             `;
-        });
+            });
 
-    } catch (error) {
-        console.log(error);
+        } catch (error) {
+            console.log(error);
+        }
     }
-}
 
-loadPosts();
+    loadPosts();
 });
 
 
 
 
 
-function showMenu(post){
+function showMenu(post) {
     /*if(post.user_id
         !== loggedInUserID){
         return "";
@@ -232,14 +232,77 @@ async function changeStatus(id, currentStatus) {
     try {
         const res = await fetch(`http://localhost:3001/api/posts/${id}/status`, {
             method: "PUT",
-            headers: {"Content-Type": "application/json", "Authorization": `Bearer ${token}`},
-            body: JSON.stringify({status: newStatus})
+            headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
+            body: JSON.stringify({ status: newStatus })
         });
-        if(res.ok){
+        if (res.ok) {
             document.getElementById(`status-${id}`).innerText = `Status: ${newStatus}`;
         }
 
-    } catch(error){
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const viewRequestsBtn =
+    document.getElementById("viewRequestsBtn");
+    const requestModal = document.getElementById("requestModal");
+    const closeRequestBtn = document.getElementById("closeRequestBtn");
+
+    viewRequestsBtn.addEventListener("click",loadRequests);
+
+    closeRequestBtn.addEventListener("click", () => {
+        requestModal.classList.add("hidden");
+    }
+);
+
+
+async function loadRequests() {
+    requestModal.classList.remove("hidden");
+    try {
+        const res = await fetch("/api/requests/my-requests",{
+                headers: {
+                    Authorization:`Bearer ${token}`
+                }
+            }
+        );
+
+        const requests = await res.json();
+        requestTableBody.innerHTML = "";
+
+        requests.forEach(req => {
+            requestTableBody.innerHTML += `
+            <tr>
+                <td>${req.post_code}</td>
+                <td>${req.full_name}</td>
+                <td>
+                    <a href="/profile/userProfile.html?id=${req.user_id}" class="profile-link-btn">View Profile</a>
+                </td>
+                <td>${req.status}</td>
+                <td>
+                    <button class="accept-btn" onclick="acceptRequest(${req.id})"> Accept </button>
+                </td>
+            </tr>`;
+        });
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function acceptRequest(requestId) {
+    try {
+        const res = await fetch(`/api/requests/accept/${requestId}`,{
+                method: "PUT", 
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
+        const data = await res.json();
+        alert(data.message);
+        loadRequests();
+    } catch (error) {
         console.log(error);
     }
 }

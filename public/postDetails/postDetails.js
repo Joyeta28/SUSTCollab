@@ -14,12 +14,12 @@ async function loadPost(){
 
                         <div>
                             <h3 class="userName">${post.full_name}</h3>
-                            <small>Status: ${post.status}</small>
+                            <small>Status: ${post.status}</smal
                         </div>
 
                     </div>
-
                     <h3 class="post-title">${post.title}</h3>
+                    <p><b>Post Code:</b> ${post.post_code}</p>
                     <p class="description">${post.description}</p>
 
                     <p><b>Catagory: </b>${post.category}</p>

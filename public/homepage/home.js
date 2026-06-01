@@ -118,9 +118,9 @@ async function loadPosts() {
 
                     </div>
 
+                    <p><b>Post Code:</b> ${post.post_code}</p>
                     <h3 class="post-title">${post.title}</h3>
                     <p class="description">${post.description}</p>
-
                     <p><b>Catagory: </b>${post.category}</p>
                     <p><b>Team Size: </b>${post.team_size}</p>
                     <p class="skills"><b>Skills: </b> ${post.required_skills}</p>
@@ -129,7 +129,7 @@ async function loadPosts() {
                         <a href="/postDetails/postDetails.html?id=${post.id}" class="details-btn">View Details</a>
                         ${
                             post.user_id === loggedInUserID ? /*`<button class="request-btn">See Requests</button>`*/ `` : 
-                            `<button class="request-btn" id="requestbtn-${post.id}">Send Request</button>`
+                            `<button class="request-btn"onclick="sendRequest(${post.id})"> Send Request </button>`
                         }
                     </div>
 
@@ -186,5 +186,30 @@ async function changeStatus(id, currentStatus) {
 
     } catch(error){
         console.log(error);
+    }
+}
+
+async function sendRequest(postId) {
+    const token = localStorage.getItem("token");
+    try {
+        const res = await fetch(
+            "http://localhost:3001/api/requests/send",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    post_id: postId
+                })
+            }
+        );
+        const data = await res.json();
+        alert(data.message);
+
+    } catch (error) {
+        console.log(error);
+        alert("Failed to send request");
     }
 }

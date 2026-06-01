@@ -61,10 +61,31 @@
         <div class="topbar">
             <input type="text" placeholder="🔍Search projects..." class="search-box">
             <a href="/createPost/createPost.html" class="create-btn">+ Create Post</a>
-
+            <button class="view-request-btn" id="viewRequestsBtn">View Requests</button>
         </div>
 
         <div class="feed">
+            <div class="request-modal hidden" id="requestModal">
+                <div class="request-box">
+                    <div class="request-header">
+                        <h2>Project Requests</h2>
+                        <button id="closeRequestBtn">✖</button>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Post Code</th>
+                                <th>User</th>
+                                <th>Profile</th>
+                                <th>Status</th>
+                                <th>Accept</th>
+                            </tr>
+                        </thead>
+                        <tbody id="requestTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
             <div id="post-container">
             </div>
 

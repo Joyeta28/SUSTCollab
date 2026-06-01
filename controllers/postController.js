@@ -5,12 +5,14 @@ exports.createPost = async (req, res) => {
         const {title, description, category, required_skills, team_size, course_title, semester} = req.body;
         const user_id = req.user.id;
 
+        const post_code = generatePostCode();
+
         const sql = `
             INSERT INTO posts
-            (user_id, title, description, category, required_skills, team_size, course_title, semester)
-                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+            (user_id, title, description, category, required_skills, team_size, course_title, semester, post_code)
+                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
-        await db.execute(sql, [user_id, title, description, category, required_skills, team_size, course_title, semester]);
+        await db.execute(sql, [user_id, title, description, category, required_skills, team_size, course_title, semester, post_code]);
 
         res.status(201).json({
             message: "Post created successfully"
@@ -128,4 +130,10 @@ exports.changeStatus = async(req, res) =>{
 
         res.json({message : "Status Changed", updatedStatus: status});
     });
+}
+
+function generatePostCode() {
+    const prefix = "SC";
+    const randomNum = String(Math.floor(Math.random() * 10000)).padStart(4, '0');
+    return prefix + randomNum; 
 }

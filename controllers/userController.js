@@ -67,3 +67,24 @@ exports.deleteAccount = (req, res) => {
         });
     });
 };
+
+exports.searchUsers = (req, res) => {
+    const search = req.query.search || "";
+
+    const sql = `
+        SELECT id, full_name, email, dept, regi_num, bio, skills
+        FROM users
+        WHERE full_name LIKE ?
+        ORDER BY full_name ASC
+    `;
+
+    db.query(sql, [`%${search}%`], (err, results) => {
+        if (err) {
+            return res.status(500).json({
+                message: "Database error"
+            });
+        }
+
+        res.json(results);
+    });
+}; 

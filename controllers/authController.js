@@ -30,7 +30,7 @@ exports.register = (req, res) => {
                 await bcrypt.hash(password, 10)
 
             db.query(
-                `INSERT INTO users (full_name, email, dept, regi_num, password) VALUES (?, ?, ?, ?, ?)`,
+                `INSERT INTO users (full_name, email, dept, regi_num, password, role) VALUES (?, ?, ?, ?, ?, "student")`,
                 [   full_name,
                     email,
                     dept,
@@ -77,7 +77,8 @@ exports.login = (req, res) => {
             const token = jwt.sign(
                 {
                     id: user.id,
-                    email: user.email
+                    email: user.email,
+                    role: user.role
                 },
                 process.env.JWT_SECRET,
                 {
@@ -90,7 +91,8 @@ exports.login = (req, res) => {
                 user: {
                     id: user.id,
                     full_name: user.full_name,
-                    email: user.email
+                    email: user.email,
+                    role: user.role
                 }
             })
         }

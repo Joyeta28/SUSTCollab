@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUSTCollab Users</title>
+    <link rel="stylesheet" href="user.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo">SUSTCollab</div>
+
+        <div class="profile">
+            <div class="profile">
+                <div class="profile-avatar" id="sidebarAvatar">J</div>
+                <h3 id="UserName">Loading...</h3>
+            </div>
+        </div>
+
+        <div class="menu">
+            <a href="/admin/dashboard/dashboard.html"><i class="fa-solid fa-chart-bar"></i> Dashboard</a>
+            <a href="#"><i class="fa-solid fa-users"></i> Users</a>
+            <a href="#"><i class="fa-solid fa-circle-exclamation"></i> Reports</a>
+            <a href="#" id="logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="topbar">
+            <input type="text" placeholder="🔍Search users..." class="search-box">
+           
+        </div>
+
+        <div class="feed">
+
+            <div id="user-container">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="user.js"></script>
+
+</body>
+
+</html>

@@ -23,7 +23,12 @@ document.getElementById("loginForm").addEventListener("submit",async (e)=>{
             data.token
         )
 
-        window.location.href ="/homepage/home.html";
+        localStorage.setItem("user",JSON.stringify(data.user));
+
+        if(data.user.role === "admin")
+            window.location.href = "/admin/dashboard/dashboard.html";
+
+        else window.location.href ="/homepage/home.html";
     }
     else{
         alert(data.message)

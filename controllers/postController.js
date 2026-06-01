@@ -113,6 +113,34 @@ exports.getMyPosts = async (req, res) => {
 
 
 
+
+exports.getPostsByUser = (req, res) => {
+
+    const userId = req.params.id;
+
+    const sql = `
+        SELECT posts.*, users.full_name
+        FROM posts
+        JOIN users ON posts.user_id = users.id
+        WHERE posts.user_id = ?
+        ORDER BY created_at DESC
+    `;
+
+    db.query(sql, [userId], (err, results) => {
+
+        if (err) {
+            console.log(err);
+            return res.status(500).json({
+                message: "Database error"
+            });
+        }
+
+        res.json(results);
+    });
+};
+
+
+
 exports.changeStatus = async(req, res) =>{
     const post_id = req.params.id;
     const {status} = req.body;

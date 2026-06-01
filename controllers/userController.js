@@ -67,3 +67,58 @@ exports.deleteAccount = (req, res) => {
         });
     });
 };
+
+
+
+
+exports.getAllUsers = (req, res) => {
+    const sql = `SELECT id, full_name, email, bio, dept, regi_num, role 
+                 FROM users`;
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({message: "Database error"});
+        }
+
+        res.json(results);
+    });
+};
+
+
+
+
+
+exports.getUserDetails = (req, res) => {
+
+    const userId = req.params.id;
+
+    const sql = `
+        SELECT id,
+               full_name,
+               email,
+               bio,
+               dept,
+               regi_num,
+               skills
+        FROM users
+        WHERE id = ?
+    `;
+
+    db.query(sql, [userId], (err, result) => {
+
+        if (err) {
+            console.log(err);
+            return res.status(500).json({
+                message: "Database error"
+            });
+        }
+
+        if (result.length === 0) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+
+        res.json(result[0]);
+    });
+};

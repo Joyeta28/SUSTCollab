@@ -1,0 +1,57 @@
+body{
+    background:#f0f2f5;
+    font-family:Arial;
+}
+
+.details-container{
+    width:800px;
+    margin:50px auto;
+}
+
+.post-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(2, 2, 2, 0.1);
+    position: relative;
+    padding-bottom: 60px;
+
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+
+.profile-pic{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+}
+
+.userName{
+    margin-bottom: 5px;
+}
+
+.post-title{
+    margin-top: 10px;
+}
+
+
+.description {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.skills{
+    margin-top: 5px;
+}
+
+

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SUSTCollab Home</title>
     <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
@@ -58,9 +59,57 @@
     
     <div class="main">
         <div class="topbar">
-            <a href="/homepage/home.html" class="create-btn">Back to Home</a>
-            <a href="/user/user.html" class="create-btn">Search Users</a>
+            <input type="text" placeholder="🔍Search projects..." class="search-box">
             <a href="/createPost/createPost.html" class="create-btn">+ Create Post</a>
+            <button class="view-request-btn" id="viewRequestsBtn">View Requests</button>
+            <button class="my-requests-btn" id="mySentRequestBtn">My Requests</button>
+        </div>
+
+        <div class="feed">
+            <div class="request-modal hidden" id="requestModal">
+                <div class="request-box">
+                    <div class="request-header">
+                        <h2>Project Requests</h2>
+                        <button id="closeRequestBtn">✖</button>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Post Code</th>
+                                <th>User</th>
+                                <th>Profile</th>
+                                <th>Status</th>
+                                <th>Accept</th>
+                            </tr>
+                        </thead>
+                        <tbody id="requestTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="request-modal hidden" id="sentRequestModal">
+                <div class="request-box">
+                    <div class="request-header">
+                        <h2>My Sent Requests</h2>
+                        <button id="closeSentBtn">✖</button>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Post Code</th>
+                                <th>Project</th>
+                                <th>Owner</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sentRequestTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="post-container">
+            </div>
+
         </div>
     </div>
 

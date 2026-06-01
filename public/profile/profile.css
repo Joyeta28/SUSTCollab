@@ -165,6 +165,16 @@ body {
     width: 100%;
 }
 
+.menu a {
+    display: block;
+    padding: 10px;
+    margin-bottom: 0px;
+    text-decoration: none;
+    color: #333;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
 .topbar {
     display: flex;
     justify-content: flex-start;
@@ -181,18 +191,9 @@ body {
     outline: none;
 }
 
-.filter-btn{
-    background: #1877f2;
-    color: white;
-    border: none;
-    margin-left: 120px;
-    padding: 10px 15px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
 .create-btn {
     background: #1877f2;
+    text-decoration: none;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -202,20 +203,27 @@ body {
 
 
 .feed {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+    display: block;
+    
+}
+
+#post-container{
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(300px,1fr));
+    gap:20px;
 }
 
 
 .post-card {
-    width: 100%;
-    max-width: 100%;
     background: white;
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(2, 2, 2, 0.1);
+    position: relative;
+    padding-bottom: 60px;
 }
+
 
 .post-header {
     display: flex;
@@ -224,29 +232,58 @@ body {
     margin-bottom: 10px;
 }
 
-.post-header img {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
+
+.profile-pic{
+    width:45px;
+    height:45px;
+    border-radius:50%;
 }
 
-.post-title {
-    margin: 10px 0;
+.post-title{
+    display: -webkit-box;
+    margin-top: 10px;
+    -webkit-line-clamp: 1;   
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+.description {
+    display: -webkit-box;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    -webkit-line-clamp: 2;   
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+.skills{
+    display: -webkit-box;
+    margin-top: 5px;
+    -webkit-line-clamp: 1;   
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 
 .buttons {
     margin-top: 15px;
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .details-btn {
-    background: #e4e6eb;
+    background: #d8d9de;
     border: none;
     padding: 8px 12px;
     border-radius: 6px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .request-btn {
@@ -257,4 +294,127 @@ body {
     border-radius: 6px;
     cursor: pointer;
 }
+
+
+
+
+
+
+
+.menu-btn{
+    border: none;
+    cursor: pointer;
+    margin-left: auto; 
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+}
+
+.dropdown-menu{
+    position:absolute;
+    top:35px;
+    right:0;
+    background:white;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.15);
+    display:none;
+    flex-direction:column;
+    min-width:160px;
+    z-index:100;
+}
+
+.dropdown-menu button{
+    display: block;
+    border:none;
+    background:white;
+    padding:12px;
+    text-align:left;
+    cursor:pointer;
+}
+
+.dropdown-menu button:hover{
+    background:#f2f2f2;
+}
+
+.view-request-btn{
+    background:#1877f2;
+    color:white;
+    border:none;
+    padding:10px 16px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.my-requests-btn{
+    background:#1877f2;
+    color:white;
+    border:none;
+    padding:10px 16px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.request-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.4);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    z-index:999;
+}
+
+.request-box{
+    background:white;
+    width:80%;
+    max-height:80vh;
+    overflow:auto;
+    border-radius:12px;
+    padding:20px;
+}
+
+.request-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.hidden{
+    display:none;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:12px;
+    text-align:center;
+}
+
+.accept-btn{
+    background:green;
+    color:white;
+    border:none;
+    padding:6px 12px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.profile-link-btn{
+    background:#1877f2;
+    color:white;
+    padding:6px 12px;
+    border-radius:6px;
+    text-decoration:none;
+}
+
+
+
+
 

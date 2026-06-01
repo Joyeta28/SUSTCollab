@@ -345,6 +345,15 @@ body {
     cursor:pointer;
 }
 
+.my-requests-btn{
+    background:#1877f2;
+    color:white;
+    border:none;
+    padding:10px 16px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
 .request-modal{
     position:fixed;
     inset:0;

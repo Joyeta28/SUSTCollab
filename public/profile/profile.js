@@ -241,17 +241,25 @@ async function changeStatus(id, currentStatus) {
     }
 }
 
-const viewRequestsBtn =
-    document.getElementById("viewRequestsBtn");
-const requestModal = document.getElementById("requestModal");
-const closeRequestBtn = document.getElementById("closeRequestBtn");
+    const viewRequestsBtn = document.getElementById("viewRequestsBtn");
+    const requestModal = document.getElementById("requestModal");
+    const closeRequestBtn = document.getElementById("closeRequestBtn");
 
-viewRequestsBtn.addEventListener("click", loadRequests);
+    viewRequestsBtn.addEventListener("click", loadRequests);
 
-closeRequestBtn.addEventListener("click", () => {
-    requestModal.classList.add("hidden");
-}
-);
+    closeRequestBtn.addEventListener("click", () => {
+        requestModal.classList.add("hidden");
+    });
+
+    const sentBtn = document.getElementById("mySentRequestBtn");
+    const sentModal = document.getElementById("sentRequestModal");
+    const closeSentBtn = document.getElementById("closeSentBtn");
+    const sentTable = document.getElementById("sentRequestTableBody");
+
+    sentBtn.addEventListener("click", loadSentRequets);
+    closeSentBtn.addEventListener("click", () =>{
+        sentModal.classList.add("hidden");
+    })
 
 
 async function loadRequests() {
@@ -304,6 +312,32 @@ async function acceptRequest(requestId) {
     }
 }
 
+async function loadSentRequets() {
+    sentModal.classList.remove("hidden");
+    try{
+        const res = await fetch("/api/requests/sent",
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
+        const requests = await res.json();
+        sentTable.innerHTML = "";
+        requests.forEach(req => {
+            sentTable.innerHTML += `
+                <tr>
+                    <td>${req.post_code}</td>
+                    <td>${req.title}</td>
+                    <td>${req.owner_name}</td>
+                    <td>${req.status}</td>
+                </tr>
+            `;
+        })
+    }catch(err){
+        console.log(err);
+    }
+}
 
 
 async function deletePost(id) {

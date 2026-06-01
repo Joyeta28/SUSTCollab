@@ -62,6 +62,7 @@
             <input type="text" placeholder="🔍Search projects..." class="search-box">
             <a href="/createPost/createPost.html" class="create-btn">+ Create Post</a>
             <button class="view-request-btn" id="viewRequestsBtn">View Requests</button>
+            <button class="my-requests-btn" id="mySentRequestBtn">My Requests</button>
         </div>
 
         <div class="feed">
@@ -82,6 +83,26 @@
                             </tr>
                         </thead>
                         <tbody id="requestTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="request-modal hidden" id="sentRequestModal">
+                <div class="request-box">
+                    <div class="request-header">
+                        <h2>My Sent Requests</h2>
+                        <button id="closeSentBtn">✖</button>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Post Code</th>
+                                <th>Project</th>
+                                <th>Owner</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sentRequestTableBody"></tbody>
                     </table>
                 </div>
             </div>

@@ -109,3 +109,42 @@ exports.acceptRequest = (req, res) => {
         });
     });
 };
+
+exports.getSentRequests = (req, res) => {
+
+    const sender_id = req.user.id;
+
+    const sql = `
+        SELECT
+            requests.id,
+            requests.status,
+            posts.title,
+            posts.post_code,
+            users.full_name AS owner_name
+
+        FROM requests
+
+        JOIN posts
+        ON requests.post_id = posts.id
+
+        JOIN users
+        ON posts.user_id = users.id
+
+        WHERE requests.sender_id = ?
+
+        ORDER BY requests.id DESC
+    `;
+
+    db.query(sql, [sender_id], (err, results) => {
+
+        if(err){
+            console.log(err);
+
+            return res.status(500).json({
+                message: "Database error"
+            });
+        }
+
+        res.json(results);
+    });
+};

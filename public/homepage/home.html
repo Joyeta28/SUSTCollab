@@ -34,8 +34,18 @@
 
     <div class="main">
         <div class="topbar">
-            <input type="text" placeholder="🔍Search projects..." class="search-box">
-            <button class="filter-btn">🔻Filter</button>
+            <input type="text" id="searchInput" placeholder="Search projects..." class="search-box">
+            
+            <select id="categoryFilter" class="filter-btn">
+                <option value="">All Categories</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Mobile App">Mobile App</option>
+                <option value="AI/ML">AI/ML</option>
+                <option value="Database">Database</option>
+                <option value="Networking">Networking</option>
+            </select>
+
+            <a href="/user/user.html" class="create-btn">Search Users</a>
             <a href="/createPost/createPost.html" class="create-btn">+ Create Post</a>
 
         </div>

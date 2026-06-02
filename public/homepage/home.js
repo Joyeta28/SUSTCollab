@@ -1,6 +1,7 @@
 const token = localStorage.getItem("token");
 
 let loggedInUserID;
+let allPosts = [];
 
 document.addEventListener("DOMContentLoaded", async () => {
     if (!token) {
@@ -99,10 +100,23 @@ async function loadPosts() {
     try {
         const res = await fetch("http://localhost:3001/api/posts");
         const posts = await res.json();
+        allPosts = posts;
+        renderPosts(allPosts);
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+        
+function renderPosts(posts) {        
         const container = document.getElementById("post-container");
 
         container.innerHTML = "";
 
+        if (posts.length === 0) {
+            container.innerHTML = "<h3>No posts found</h3>";
+            return;
+        }
 
         posts.forEach(post => {
             container.innerHTML += `
@@ -135,11 +149,32 @@ async function loadPosts() {
 
                 </div>`;
         });
-
-    } catch (error) {
-        console.log(error);
-    }
 }
+
+function applyPostFilters() {
+    const searchText = document.getElementById("searchInput").value.toLowerCase();
+    const selectedCategory = document.getElementById("categoryFilter").value;
+
+    const filteredPosts = allPosts.filter(post => {
+        const matchesSearch =
+            post.title.toLowerCase().includes(searchText) ||
+            post.description.toLowerCase().includes(searchText) ||
+            post.required_skills.toLowerCase().includes(searchText) ||
+            post.full_name.toLowerCase().includes(searchText) ||
+            post.post_code.toLowerCase().includes(searchText);
+
+        const matchesCategory =
+            selectedCategory === "" || post.category === selectedCategory;
+
+        return matchesSearch && matchesCategory;
+    });
+
+    renderPosts(filteredPosts);
+}
+
+document.getElementById("searchInput").addEventListener("input", applyPostFilters);
+document.getElementById("categoryFilter").addEventListener("change", applyPostFilters);
+
 
 loadPosts();
 

@@ -68,6 +68,7 @@ exports.getMyRequests = (req, res) => {
     const receiver_id = req.user.id;
     const sql = `SELECT
             requests.id,
+            requests.post_id,
             requests.status,
             posts.post_code,
             users.full_name,
@@ -117,10 +118,12 @@ exports.getSentRequests = (req, res) => {
     const sql = `
         SELECT
             requests.id,
+            requests.post_id,
             requests.status,
             posts.title,
             posts.post_code,
-            users.full_name AS owner_name
+            users.full_name AS owner_name,
+            users.id AS owner_id
 
         FROM requests
 

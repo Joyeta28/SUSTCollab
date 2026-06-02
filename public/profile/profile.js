@@ -279,9 +279,12 @@ async function loadRequests() {
             requestTableBody.innerHTML += `
             <tr>
                 <td>${req.post_code}</td>
+                <td>
+                    <a href="../postDetails/postDetails.html?id=${req.post_id}" class="profile-link-btn">View Post</a>
+                </td>
                 <td>${req.full_name}</td>
                 <td>
-                    <a href="/profile/userProfile.html?id=${req.user_id}" class="profile-link-btn">View Profile</a>
+                    <a href="../admin/userDetails/userDetails.html?id=${req.user_id}" class="profile-link-btn">View Profile</a>
                 </td>
                 <td>${req.status}</td>
                 <td>
@@ -328,8 +331,14 @@ async function loadSentRequets() {
             sentTable.innerHTML += `
                 <tr>
                     <td>${req.post_code}</td>
+                    <td>
+                        <a href="../postDetails/postDetails.html?id=${req.post_id}" class="profile-link-btn">View Post</a>
+                    </td>
                     <td>${req.title}</td>
                     <td>${req.owner_name}</td>
+                    <td>
+                        <a href="../admin/userDetails/userDetails.html?id=${req.owner_id}" class="profile-link-btn">View Profile</a>
+                    </td>
                     <td>${req.status}</td>
                 </tr>
             `;

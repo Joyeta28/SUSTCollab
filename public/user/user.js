@@ -7,7 +7,12 @@ if (!token) {
 }
 
 async function searchUsers() {
-    const searchText = userSearchInput.value;
+    const searchText = userSearchInput.value.trim();
+
+    if (!searchText) {
+        userList.innerHTML = `<p class="empty-message">Type a name to search users.</p>`;
+        return;
+    }
 
     try {
         const res = await fetch(`/api/user/search?search=${encodeURIComponent(searchText)}`, {
@@ -16,6 +21,11 @@ async function searchUsers() {
                 "Authorization": `Bearer ${token}`
             }
         });
+
+        if (res.status === 401 || res.status === 403) {
+            window.location.href = "/login/login.html";
+            return;
+        }
 
         const users = await res.json();
 
@@ -30,13 +40,13 @@ function displayUsers(users) {
     userList.innerHTML = "";
 
     if (users.length === 0) {
-        userList.innerHTML = "<p>No users found.</p>";
+        userList.innerHTML = `<p class="empty-message">No users found.</p>`;
         return;
     }
 
     users.forEach(user => {
         userList.innerHTML += `
-            <div class="user-card">
+            <div class="user-card"onclick="openUserProfile(${user.id})">
                 <div class="avatar">
                     ${getInitials(user.full_name)}
                 </div>
@@ -52,6 +62,10 @@ function displayUsers(users) {
             </div>
         `;
     });
+}
+
+function openUserProfile(userId) {
+    window.location.href = `/user/userProfile.html?id=${userId}`;
 }
 
 function getInitials(name) {

@@ -192,9 +192,24 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
     
+    loadPosts();
+
+    async function deletePost(id) {
+    try {
+        const res = await fetch(`/api/posts/${id}`, {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+        });
+
+        if (res.ok)
+            loadPosts();
+    } catch (error) {
+        console.log(error);
+    }
+    }
 });
 
-loadPosts();
+
 
 function showMenu(post) {
     /*if(post.user_id
@@ -278,7 +293,7 @@ async function loadRequests() {
                 <td>${req.post_code}</td>
                 <td>${req.full_name}</td>
                 <td>
-                    <a href="/profile/userProfile.html?id=${req.user_id}" class="profile-link-btn">View Profile</a>
+                    <a href="/user/user.html" class="profile-link-btn">View Profile</a>
                 </td>
                 <td>${req.status}</td>
                 <td>
@@ -337,16 +352,3 @@ async function loadSentRequests() {
 }
 
 
-async function deletePost(id) {
-    try {
-        const res = await fetch(`/api/posts/${id}`, {
-            method: "DELETE",
-            headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
-        });
-
-        if (res.ok)
-            loadPosts();
-    } catch (error) {
-        console.log(error);
-    }
-}

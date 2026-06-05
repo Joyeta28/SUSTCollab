@@ -59,7 +59,8 @@
     </div>
     <div class="main">
         <div class="topbar">
-            <input type="text" placeholder="🔍Search projects..." class="search-box">
+            <a href="/createProject/createProject.html" class="create-btn"> + Add Project</a>
+            <button class="my-projects-btn" id="myProjectsBtn">My Projects</button>
             <a href="/createPost/createPost.html" class="create-btn">+ Create Post</a>
             <button class="view-request-btn" id="viewRequestsBtn">View Requests</button>
             <button class="my-requests-btn" id="mySentRequestBtn">My Requests</button>
@@ -107,6 +108,16 @@
                         </thead>
                         <tbody id="sentRequestTableBody"></tbody>
                     </table>
+                </div>
+            </div>
+
+            <div class="request-modal hidden" id="projectModal">
+                <div class="request-box">
+                    <div class="request-header">
+                        <h2>My Projects</h2>
+                        <button id="closeProjectBtn"> ✖</button>
+                    </div>
+                    <div id="projectContainer"></div>
                 </div>
             </div>
 

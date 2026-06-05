@@ -414,7 +414,45 @@ th,td{
     text-decoration:none;
 }
 
+#projectContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
 
+.project-card{
+    background: rgb(194, 211, 235);
+    width: 70%;
+    max-width: 700px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.github-btn{
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 14px;
+    background: #1877f2;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.my-projects-btn{
+    background-color: #1877f2;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
 
 
 

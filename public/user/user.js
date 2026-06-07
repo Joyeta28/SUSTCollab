@@ -4,6 +4,10 @@ const userList = document.getElementById("userList");
 
 let allUsers = [];
 
+function normalizeName(name) {
+    return (name || "").toLowerCase().trim().replace(/\s+/g, " ");
+}
+
 if (!token) {
     window.location.href = "/login/login.html";
 }
@@ -34,20 +38,26 @@ async function loadUsers() {
 function searchUsers() {
     const searchText = userSearchInput.value.toLowerCase().trim();
 
-    const filteredUsers = allUsers.filter(user => {
-        return (
-            user.full_name.toLowerCase().includes(searchText) ||
-            user.email.toLowerCase().includes(searchText) ||
-            (user.dept || "").toLowerCase().includes(searchText) ||
-            (user.regi_num || "").toLowerCase().includes(searchText)
-        );
+    if (searchText === "") {
+        displayUsers(allUsers);
+        return;
+    }
+
+    const exactMatches = allUsers.filter(user => {
+        return normalizeName(user.full_name) === normalizeName(searchText);
     });
 
-    displayUsers(filteredUsers);
+    displayUsers(exactMatches);
+    return;
 }
 
 function displayUsers(users) {
     userList.innerHTML = "";
+
+    if (userSearchInput.value.trim() === "") {
+    userList.innerHTML = "<p>Type a full name to search.</p>";
+    return;
+}
 
     if (users.length === 0) {
         userList.innerHTML = "<p>No users found.</p>";
@@ -60,11 +70,10 @@ function displayUsers(users) {
                 <div class="avatar">${getInitials(user.full_name)}</div>
 
                 <div class="user-info">
-                    <p class="user-id">ID: ${user.id}</p>
-                    <h3>${user.full_name}</h3>
-                    <p><b>Email:</b> ${user.email}</p>
-                    <p><b>Department:</b> ${user.dept || "Not added"}</p>
-                    <p><b>Registration:</b> ${user.regi_num || "Not added"}</p>
+                    <div class="user-header">
+                        <h3 class="user-name">${user.full_name}</h3>
+                    </div>
+                    <p><b>Email:</b> ${user.email}</p>                    
                 </div>
             </div>
         `;
@@ -72,7 +81,7 @@ function displayUsers(users) {
 }
 
 function openUserDetails(userId) {
-    window.location.href = `/admin/userDetails/userDetails.html?id=${userId}`;
+    window.location.href = `/user/userDetails/userDetails.html?id=${userId}`;
 }
 
 function getInitials(name) {

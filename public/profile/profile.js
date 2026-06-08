@@ -362,3 +362,44 @@ async function deletePost(id) {
         console.log(error);
     }
 }
+
+const myProjectsBtn = document.getElementById("myProjectsBtn");
+const projectModal = document.getElementById("projectModal");
+const closeProjectBtn = document.getElementById("closeProjectBtn");
+const projectContainer = document.getElementById("projectContainer");
+
+myProjectsBtn.addEventListener("click",loadProjects);
+
+closeProjectBtn.addEventListener("click", () => {
+        projectModal.classList.add("hidden");
+    }
+);
+
+async function loadProjects(){
+    projectModal.classList.remove("hidden");
+    try {
+        const res = await fetch("/api/projects/my-projects",
+            {
+                headers: {
+                    Authorization:
+                    `Bearer ${token}`
+                }
+            }
+        );
+
+        const projects = await res.json();
+        projectContainer.innerHTML = "";
+        projects.forEach(project => {
+            projectContainer.innerHTML += `
+            <div class="project-card">
+                <h3>${project.title}</h3>
+                <p>${project.description}</p>
+                <p><b>Tech Stack:</b> ${project.tech_stack}</p>
+                <a href="${project.github_link}" target="_blank" class="github-btn"> GitHub Repo</a>
+            </div>
+            `;
+        });
+    } catch(err){
+        console.log(err);
+    }
+}

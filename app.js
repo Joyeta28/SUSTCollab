@@ -13,13 +13,14 @@ const userRoutes = require("./routers/userRoutes");
 const postRoutes = require("./routers/postRoutes");
 const requestRoutes = require("./routers/requestRoutes");
 const reportRoutes = require("./routers/reportRoutes");
-
+const projectRoutes = require("./routers/projectRoutes");
 
 app.use("/api/auth",authRoutes)
 app.use("/api/user", userRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/reports", reportRoutes);
 app.use("/api/requests", requestRoutes);
+app.use("/api/projects", projectRoutes)
 
 const db = require("./config/db")
 

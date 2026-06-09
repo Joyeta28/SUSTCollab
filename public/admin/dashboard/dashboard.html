@@ -30,9 +30,16 @@
 
     <div class="main">
         <div class="topbar">
-            <input type="text" placeholder="🔍Search users..." class="search-box">
-            <button class="filter-btn"><i class="fa-solid fa-filter"></i> Filter</button>
-            <a href="/createPost/createPost.html" class="create-btn"><i class="fa-regular fa-calendar-plus"></i> Create Post</a>
+            <input type="text" placeholder="🔍Search projects..." class="search-box" id="searchInput">
+            <select id="categoryFilter" class="filter-btn">
+                <option value="">All Categories</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Mobile App">Mobile App</option>
+                <option value="AI/ML">AI/ML</option>
+                <option value="Database">Database</option>
+                <option value="Networking">Networking</option>
+            </select>
+            <!--<a href="/createPost/createPost.html" class="create-btn"><i class="fa-regular fa-calendar-plus"></i> Create Announcement</a>-->
 
         </div>
 

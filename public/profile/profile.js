@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const bio = document.querySelector(".about-text");
     const regi_num = document.querySelector(".regi_num");
     const dept = document.querySelector(".dept");
-    const skillsContainer = document.querySelector(".skills");
+    const skillsContainer = document.querySelector(".profile-skills");
     const avatar = document.querySelector(".profile-avatar");
 
     const editBioBtn = document.querySelector(".edit-bio-btn");

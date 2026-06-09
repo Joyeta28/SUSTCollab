@@ -141,19 +141,24 @@ body {
     word-break: break-word;
 }
 
-.skills{
+.profile-skills{
     display:flex;
     flex-wrap:wrap;
     gap:10px;
+    max-width:100%;
 }
 
-.skills span{
+.profile-skills span{
     background:#89b6f3;
     color:white;
     padding:8px 14px;
     border-radius:20px;
     font-size:14px;
+
+    max-width:100%;
+    word-break:break-word;
 }
+
 
 .space{
     margin-top: 10px;

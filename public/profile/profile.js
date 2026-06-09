@@ -206,8 +206,6 @@ function showMenu(post) {
                 <button class="menu-btn" onclick="toggleMenu(${post.id})"><i class="fa-solid fa-ellipsis-vertical"></i></button>
 
                 <div id="menu-${post.id}" class="dropdown-menu">
-
-                    <button onclick="updatePost(${post.id})">Update</button>
                     <button onclick="deletePost(${post.id})">Delete</button>
                     <button onclick="changeStatus(${post.id}, '${post.status}')">Change Status</button>
 

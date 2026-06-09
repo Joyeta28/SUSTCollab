@@ -12,8 +12,8 @@ const authRoutes = require("./routers/authRoutes")
 const userRoutes = require("./routers/userRoutes");
 const postRoutes = require("./routers/postRoutes");
 const requestRoutes = require("./routers/requestRoutes");
-const projectRoutes = require("./routers/projectRoutes");
 const reportRoutes = require("./routers/reportRoutes");
+const projectRoutes = require("./routers/projectRoutes");
 
 
 app.use("/api/auth",authRoutes)

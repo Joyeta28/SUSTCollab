@@ -42,6 +42,11 @@
                 <option value="Networking">Networking</option>
             </select>
 
+            <button id="notificationBtn" class="create-btn">
+                <i class="fa-solid fa-bell"></i>
+                <span id="notificationCount">0</span>
+            </button>
+
             <a href="/user/user.html" class="create-btn">Search Users</a>
             <a href="/createPost/createPost.html" class="create-btn">+ Create Post</a>
 
@@ -55,6 +60,11 @@
 
         </div>
 
+    </div>
+
+    <div id="notificationBox" class="notification-box hidden">
+        <h3>Notifications</h3>
+        <div id="notificationList"></div>
     </div>
 
     <script src="home.js"></script>

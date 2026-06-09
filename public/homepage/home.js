@@ -258,3 +258,65 @@ async function deletePost(id){
         console.log(error);
     }
 }
+
+const notificationBtn = document.getElementById("notificationBtn");
+const notificationBox = document.getElementById("notificationBox");
+const notificationList = document.getElementById("notificationList");
+const notificationCount = document.getElementById("notificationCount");
+
+notificationBtn.addEventListener("click", async () => {
+    notificationBox.classList.toggle("hidden");
+
+    await fetch("/api/notifications/read", {
+        method: "PUT",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    });
+
+    loadNotifications();
+});
+
+async function loadNotifications() {
+    try {
+        const res = await fetch("/api/notifications", {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        const notifications = await res.json();
+
+        notificationList.innerHTML = "";
+
+        const unreadCount = notifications.filter(notification => {
+            return notification.is_read === 0;
+        }).length;
+
+        notificationCount.innerText = unreadCount;
+
+        if (notifications.length === 0) {
+            notificationList.innerHTML = "<p>No notifications</p>";
+            return;
+        }
+
+        notifications.forEach(notification => {
+            notificationList.innerHTML += `
+                <div class="notification-item ${notification.is_read === 0 ? "unread" : ""}">
+                    <p>
+                        <b>${notification.sender_name || "Someone"}</b>
+                        ${notification.message}
+                    </p>
+                    <small>${new Date(notification.created_at).toLocaleString()}</small>
+                </div>
+            `;
+        });
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+loadNotifications();
+
+setInterval(loadNotifications, 10000);

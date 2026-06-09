@@ -15,12 +15,14 @@ const requestRoutes = require("./routers/requestRoutes");
 const reportRoutes = require("./routers/reportRoutes");
 const projectRoutes = require("./routers/projectRoutes");
 const settingsRoutes = require("./routers/settingsRoutes");
+const notificationRoutes = require("./routers/notificationRoutes");
 
 app.use("/api/auth",authRoutes)
 app.use("/api/user", userRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/reports", reportRoutes);
 app.use("/api/settings", settingsRoutes);
+app.use("/api/notifications", notificationRoutes);
 app.use("/api/requests", requestRoutes);
 app.use("/api/projects", projectRoutes)
 

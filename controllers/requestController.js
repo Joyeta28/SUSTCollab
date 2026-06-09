@@ -36,16 +36,23 @@ exports.sendRequest = (req, res) => {
         `;
 
         db.query(sql,[sender_id, post_id], (err, result) => {
-                if (result.length > 0) {
-                    return res.json({
-                        message: "Request already sent"
-                    });
-                }
-                const sql = `
-                    INSERT INTO requests
-                    (post_id, sender_id, receiver_id, status)
-                    VALUES (?, ?, ?, ?)
-                `;
+            if (err) {
+                console.log(err);
+                return res.status(500).json({
+                    message: "Database error"
+                });
+            }
+            if (result.length > 0) {
+                return res.json({
+                    message: "Request already sent"
+                    
+                });
+            }
+            const sql = `
+                INSERT INTO requests
+                (post_id, sender_id, receiver_id, status)
+                VALUES (?, ?, ?, ?)
+            `;
 
                 db.query( sql, [post_id, sender_id, receiver_id, "Pending"], (err) => {
                         if (err) {
@@ -54,14 +61,60 @@ exports.sendRequest = (req, res) => {
                                 message: "Database error"
                             });
                         }
-                        res.json({
-                            message: "Request sent successfully"
-                        });
-                    }
-                );
-            }
-        );
-    });
+                        const settingsSql = `
+                            SELECT request_notifications
+                            FROM user_settings
+                            WHERE user_id = ?
+                        `;
+
+                        db.query(settingsSql, [receiver_id], (err, settingsResult) => {
+                            if (err) {
+                                console.log(err);
+                                return res.json({
+                                    message: "Request sent successfully"
+                                });
+                            }
+
+                            const notificationsOn =
+                                settingsResult.length === 0 ||
+                                settingsResult[0].request_notifications === 1;
+
+                            if (!notificationsOn) {
+                                return res.json({
+                                    message: "Request sent successfully"
+                                });
+                            }
+
+                            const notificationSql = `
+                                INSERT INTO notifications
+                                (user_id, sender_id, type, message)
+                                VALUES (?, ?, ?, ?)
+                            `;
+
+                            db.query(
+                                notificationSql,
+                                [
+                                    receiver_id,
+                                    sender_id,
+                                    "request",
+                                    "sent you a collaboration request"
+                                ],
+                                (err) => {
+                                    if (err) {
+                                        console.log(err);
+                                    }
+
+                                    return res.json({
+                                        message: "Request sent successfully"
+                                    });
+                                }
+                            );
+                        }
+                    );
+                });
+            });
+        }
+    );
 };
 
 exports.getMyRequests = (req, res) => {

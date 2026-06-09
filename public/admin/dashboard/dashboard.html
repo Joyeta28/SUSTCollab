@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SUSTCollab Home</title>
+    <title>SUSTCollab | Admin | Dashboard</title>
     <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -30,9 +30,16 @@
 
     <div class="main">
         <div class="topbar">
-            <input type="text" placeholder="🔍Search users..." class="search-box">
-            <button class="filter-btn"><i class="fa-solid fa-filter"></i> Filter</button>
-            <a href="/createPost/createPost.html" class="create-btn"><i class="fa-regular fa-calendar-plus"></i> Create Post</a>
+            <input type="text" placeholder="🔍Search projects..." class="search-box" id="searchInput">
+            <select id="categoryFilter" class="filter-btn">
+                <option value="">All Categories</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Mobile App">Mobile App</option>
+                <option value="AI/ML">AI/ML</option>
+                <option value="Database">Database</option>
+                <option value="Networking">Networking</option>
+            </select>
+            <!--<a href="/createPost/createPost.html" class="create-btn"><i class="fa-regular fa-calendar-plus"></i> Create Announcement</a>-->
 
         </div>
 

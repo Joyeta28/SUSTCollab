@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                             <h3>${post.full_name}</h3>
                             <small id="status-${post.id}">Status: ${post.status}</small>
                         </div>
+                        ${showMenu(post)}
 
                     </div>
 
@@ -146,6 +147,39 @@ async function deleteUser() {
        }
         
     } catch (error) {
+        console.log(error);
+    }
+}
+
+
+
+function showMenu(post){
+    return `<div class="menu-container">
+                <button class="menu-btn" onclick="toggleMenu(${post.id})"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+
+                <div id="menu-${post.id}" class="dropdown-menu">
+                    <button onclick="deletePost(${post.id})">Delete</button>
+                </div>
+            </div>`;
+}
+
+
+function toggleMenu(id) {
+    const menu = document.getElementById(`menu-${id}`);
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+
+
+async function deletePost(id){
+    try{
+        const res = await fetch(`http://localhost:3001/api/posts/${id}`,{
+            method : "DELETE",
+            headers : {"Content-Type" : "application/json", "Authorization" : `Bearer ${token}`}        
+        });
+
+        if(res.ok)
+            loadPosts();
+    } catch(error){
         console.log(error);
     }
 }

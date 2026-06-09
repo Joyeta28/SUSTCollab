@@ -25,6 +25,8 @@ async function loadPost(){
                     <p><b>Catagory: </b>${post.category}</p>
                     <p><b>Team Size: </b>${post.team_size}</p>
                     <p class="skills"><b>Skills: </b> ${post.required_skills}</p>
+                    <p><b>Course Title: </b>${post.course_title}</p>
+                    <p><b>Semester: </b>${post.semester}</p>
 
                 </div>`;
 

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUSTCollab | Report Details</title>
+    <link rel="stylesheet" href="reportDetails.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <p>
+                <strong>Reporter:</strong>
+                <span id="reporterName"></span>
+            </p>
+
+            <p>
+                <strong>Reported User:</strong>
+                <span id="reportedUser"></span>
+            </p>
+
+            <p>
+                <strong>Reason:</strong>
+                <span id="reason"></span>
+            </p>
+
+            <p>
+                <strong>Created At:</strong>
+                <span id="createdAt"></span>
+            </p>
+
+            <div class="description-box">
+                <h3>Description</h3>
+                <p id="description"></p>
+            </div>
+
+            <a id="profileLink" class="profile-btn">View User Profile</a>
+
+            <div class="status-section">
+                <select id="statusSelect">
+                    <option value="Pending">Pending</option>
+                    <option value="Reviewed">Reviewed</option>
+                    <option value="Rejected">Rejected</option>
+                </select>
+
+                <button id="updateBtn">Update Status</button>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="reportDetails.js"></script>
+
+</body>
+
+</html>

@@ -68,9 +68,20 @@
     <div class="main">
         <div class="topbar">
             <input type="text" placeholder="🔍Search projects..." class="search-box">
+            <button class="my-projects-btn" id="myProjectsBtn">Projects</button>
         </div>
 
         <div class="feed">
+
+            <div class="request-modal hidden" id="projectModal">
+                <div class="request-box">
+                    <div class="request-header">
+                        <h2>My Projects</h2>
+                        <button id="closeProjectBtn"> ✖</button>
+                    </div>
+                    <div id="projectContainer"></div>
+                </div>
+            </div>
 
             <div id="post-container">
 

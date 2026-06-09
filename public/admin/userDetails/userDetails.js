@@ -75,3 +75,77 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
 });
+
+
+
+
+
+
+const myProjectsBtn = document.getElementById("myProjectsBtn");
+const projectModal = document.getElementById("projectModal");
+const closeProjectBtn = document.getElementById("closeProjectBtn");
+const projectContainer = document.getElementById("projectContainer");
+
+myProjectsBtn.addEventListener("click",loadProjects);
+
+closeProjectBtn.addEventListener("click", () => {
+        projectModal.classList.add("hidden");
+    }
+);
+
+async function loadProjects(){
+
+    const params = new URLSearchParams(window.location.search);
+    const user_id = params.get("id");
+
+    projectModal.classList.remove("hidden");
+
+    try {
+        const res = await fetch(`/api/projects/user/${user_id}`,
+            {
+                headers: {
+                    Authorization:
+                    `Bearer ${token}`
+                }
+            }
+        );
+
+        const projects = await res.json();
+        projectContainer.innerHTML = "";
+        projects.forEach(project => {
+            projectContainer.innerHTML += `
+            <div class="project-card">
+                <h3>${project.title}</h3>
+                <p>${project.description}</p>
+                <p><b>Tech Stack:</b> ${project.tech_stack}</p>
+                <a href="${project.github_link}" target="_blank" class="github-btn"> GitHub Repo</a>
+            </div>
+            `;
+        });
+    } catch(err){
+        console.log(err);
+    }
+}
+
+
+
+
+
+async function deleteUser() {
+    try {
+        const params = new URLSearchParams(window.location.search);
+        const user_id = params.get("id");
+        const res = await fetch(`http://localhost:3001/api/user/${user_id}`, {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+        });
+
+       if(res.ok){
+            alert("User deleted successfully"); 
+            window.location.href = "/admin/users/user.html";
+       }
+        
+    } catch (error) {
+        console.log(error);
+    }
+}

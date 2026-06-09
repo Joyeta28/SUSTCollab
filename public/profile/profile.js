@@ -337,7 +337,7 @@ async function loadSentRequets() {
                     <td>${req.title}</td>
                     <td>${req.owner_name}</td>
                     <td>
-                        <a href="../admin/userDetails/userDetails.html?id=${req.owner_id}" class="profile-link-btn">View Profile</a>
+                        <a href="../user/userDetails/userDetails.html?id=${req.owner_id}" class="profile-link-btn">View Profile</a>
                     </td>
                     <td>${req.status}</td>
                 </tr>

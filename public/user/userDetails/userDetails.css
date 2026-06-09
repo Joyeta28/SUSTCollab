@@ -341,6 +341,91 @@ body {
 
 
 
+button{
+    background-color: #1877f2;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.request-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.4);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    z-index:999;
+}
+
+.request-box{
+    background:white;
+    width:80%;
+    max-height:80vh;
+    overflow:auto;
+    border-radius:12px;
+    padding:20px;
+}
+
+.request-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.hidden{
+    display:none;
+}
+
+
+
+#projectContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+
+.project-card{
+    background: rgb(194, 211, 235);
+    width: 70%;
+    max-width: 700px;
+    padding: 20px;
+    margin: 5px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.github-btn{
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 14px;
+    background: #1877f2;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

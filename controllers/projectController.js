@@ -62,3 +62,24 @@ exports.getMyProjects = (req, res) => {
         res.json(results);
     });
 };
+
+
+
+
+
+exports.getProjectsByUser = (req, res)=>{
+    const user_id = req.params.id;
+
+    const sql = `SELECT *
+                FROM projects
+                WHERE user_id = ?
+                ORDER BY created_at DESC`;
+
+    db.query(sql, [user_id], (err, results)=>{
+        if(err){
+            console.log(err);
+            return res.status(500).json({message: "Database error"});
+        }
+        res.json(results);
+    });
+};

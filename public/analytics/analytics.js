@@ -169,3 +169,39 @@ async function loadAcceptanceRate() {
         console.log(err);
     }
 }
+
+
+
+
+async function loadRequestsPerDay() {
+    const token = localStorage.getItem("token");
+
+    const res = await fetch(
+        "/api/analytics/rq-per-day",
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    );
+
+    const data = await res.json();
+
+    const container =
+        document.getElementById("requestsPerDayContainer");
+
+    container.innerHTML = "";
+
+    data.forEach(item => {
+        container.innerHTML += `
+            <div class="analytics-card">
+                <h4>${item.request_date}</h4>
+                <p>${item.total_requests} Requests Sent</p>
+            </div>
+        `;
+    });
+}
+
+loadRequestsPerDay();
+
+

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SUSTCollab | Home</title>
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="analytics.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
@@ -25,31 +25,31 @@
             <a href="#"><i class="fa-solid fa-house"></i> Home</a>
             <a href="#" id="logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
             <a href="#" id="delete-account"><i class="fa-solid fa-delete-left"></i> Delete Account</a>
-            <a href="/analytics/analytics.html">Analytics</a>
+            <a href="#" id="delete-account"><i class="fa-solid fa-analytics"></i>Analytics</a>
         </div>
     </div>
 
     <div class="main">
         <div class="topbar">
-            <input type="text" id="searchInput" placeholder="🔍Search projects..." class="search-box">
-            
-            <select id="categoryFilter" class="filter-btn">
-                <option value="">All Categories</option>
-                <option value="Web Development">Web Development</option>
-                <option value="Mobile App">Mobile App</option>
-                <option value="AI/ML">AI/ML</option>
-                <option value="Database">Database</option>
-                <option value="Networking">Networking</option>
-            </select>
-
-            <a href="/user/user.html" class="create-btn">Search Users</a>
-            <a href="/createPost/createPost.html" class="create-btn">+ Create Post</a>
+            <h2>User Analytics</h2>
 
         </div>
 
         <div class="feed">
 
-            <div id="post-container">
+            <div id="analytics-container">
+                <h3>Analytics</h3>
+                <button class="request-btn">Total Posts</button>
+                <button class="request-btn">Sent Requests</button>
+                <button class="request-btn">Accepted Requests</button>
+                <button class="request-btn">Acceptance Rate</button>
+                <button class="request-btn">Most Used Catagories</button>
+
+                
+                <button class="request-btn">Post Per Day</button>
+                <button class="request-btn">Requests Per Day</button>
+                <button class="request-btn">Posts per Catagories</button>
+
 
             </div>
 
@@ -57,7 +57,7 @@
 
     </div>
 
-    <script src="home.js"></script>
+    <script src="analytics.js"></script>
 
 </body>
 

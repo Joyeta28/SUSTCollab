@@ -6,11 +6,11 @@ const verifyToken = require("../middleware/authMiddleware");
 const {getTotalRequestsSent,getTotalAcceptedRequests, getUserPostCount} = require("../controllers/analyticsController")
 
 
-router.get("/analytics/total-sent", verifyToken, getTotalRequestsSent);
-
-router.get( "/analytics/total-accepted",verifyToken, getTotalAcceptedRequests);
+router.get("/total-sent", verifyToken, getTotalRequestsSent);
 
 router.get("/postCount", verifyToken, getUserPostCount);
 
+router.get( "/total-accepted",verifyToken, getTotalAcceptedRequests);
 
-module.exports= router;
+module.exports = router;
+

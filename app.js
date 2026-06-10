@@ -23,7 +23,7 @@ app.use("/api/posts", postRoutes);
 app.use("/api/reports", reportRoutes);
 app.use("/api/requests", requestRoutes);
 app.use("/api/projects", projectRoutes);
-app.use("/api/analytics", analyticsRoutes);
+app.use("/api/analytics", analyticsRoutes)
 
 const db = require("./config/db")
 

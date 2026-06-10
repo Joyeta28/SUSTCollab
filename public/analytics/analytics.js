@@ -169,3 +169,25 @@ async function loadAcceptanceRate() {
         console.log(err);
     }
 }
+
+
+async function loadWeeklyPosts() {
+
+    const token = localStorage.getItem("token");
+
+    const res = await fetch(
+        "/api/analytics/posts/weekly-comparison",
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    );
+
+    const data = await res.json();
+
+    document.getElementById("thisWeek").innerText = data.this_week;
+    document.getElementById("lastWeek").innerText = data.last_week;
+}
+
+loadWeeklyPosts();

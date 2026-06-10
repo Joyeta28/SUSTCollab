@@ -131,3 +131,36 @@ exports.getRequestAcceptanceRate = (req, res) => {
         });
     });
 };
+
+
+exports.getWeeklyPostComparison = (req, res) => {
+    const user_id = req.user.id;
+
+    const sql = `
+        SELECT 
+            SUM(CASE 
+                WHEN created_at >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) 
+                THEN 1 ELSE 0 
+            END) AS this_week,
+
+            SUM(CASE 
+                WHEN created_at >= DATE_SUB(CURDATE(), INTERVAL 14 DAY)
+                AND created_at < DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+                THEN 1 ELSE 0 
+            END) AS last_week
+
+        FROM posts
+        WHERE user_id = ?;
+    `;
+
+    db.query(sql, [user_id], (err, result) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({
+                message: "Database error"
+            });
+        }
+
+        res.json(result[0]);
+    });
+};

@@ -184,6 +184,32 @@ h3{
 
 
 
+.analytics-card{
+    width:250px;
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.card-icon{
+    font-size:35px;
+}
+
+.card-content h3{
+    font-size:28px;
+    color:#2563eb;
+}
+
+.card-content p{
+    color:#666;
+}
+
+
+
 
 
 

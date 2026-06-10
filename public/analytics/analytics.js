@@ -1,7 +1,6 @@
 const token = localStorage.getItem("token");
 
 let loggedInUserID;
-let allPosts = [];
 
 document.addEventListener("DOMContentLoaded", async () => {
     if (!token) {
@@ -45,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         loggedInUserID = data.user.id;
 
-        loadPosts();
+        loadAnalytics();
 
     }catch (err) {
         console.log(err);
@@ -94,3 +93,28 @@ document.getElementById("delete-account")
     document.getElementById("UserName").innerText =
         data.user.full_name;
 });
+
+
+
+
+async function loadAnalytics() {
+    try {
+        const res = await fetch(
+            "/api/analytics/postCount",
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
+
+        const data = await res.json();
+
+        document.getElementById("total-posts").innerText =
+            data.totalPosts;
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+

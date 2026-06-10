@@ -164,3 +164,28 @@ exports.getWeeklyPostComparison = (req, res) => {
         res.json(result[0]);
     });
 };
+
+exports.getRequestsPerDay = (req, res) => {
+    const user_id = req.user.id;
+
+    const sql = `
+        SELECT
+            DATE(created_at) AS request_date,
+            COUNT(*) AS total_requests
+        FROM requests
+        WHERE sender_id = ?
+        GROUP BY DATE(created_at)
+        ORDER BY request_date ASC
+    `;
+
+    db.query(sql, [user_id], (err, results) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({
+                message: "Database error"
+            });
+        }
+
+        res.json(results);
+    });
+};

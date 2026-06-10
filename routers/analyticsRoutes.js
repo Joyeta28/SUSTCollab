@@ -4,7 +4,7 @@ const router = express.Router()
 
 const verifyToken = require("../middleware/authMiddleware");
 const {getTotalRequestsSent,getTotalAcceptedRequests, getUserPostCount,getPostsPerDay, getRequestAcceptanceRate,
-    getWeeklyPostComparison
+    getWeeklyPostComparison,getRequestsPerDay
 } = require("../controllers/analyticsController")
 
 
@@ -20,6 +20,7 @@ router.get("/acceptance-rate", verifyToken, getRequestAcceptanceRate);
 
 router.get("/posts/weekly-comparison",verifyToken, getWeeklyPostComparison);
 
+router.get("/rq-per-day", verifyToken, getRequestsPerDay);
 
 module.exports = router;
 

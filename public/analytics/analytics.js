@@ -223,3 +223,89 @@ async function loadRequestsPerDay() {
 }
 
 loadRequestsPerDay();
+
+document
+.getElementById("mostUsedCategoriesBtn")
+.addEventListener("click", loadMostUsedCategories);
+
+document
+.getElementById("postsPerCategoriesBtn")
+.addEventListener("click", loadPostsPerCategories);
+
+
+async function loadMostUsedCategories() {
+    try {
+        const res = await fetch("/api/analytics/most-used-categories", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        const data = await res.json();
+
+        const container =
+            document.getElementById("categoryAnalyticsContainer");
+
+        container.innerHTML = "<h2>Most Used Categories</h2>";
+
+        if (data.length === 0) {
+            container.innerHTML += "<p>No category data found</p>";
+            return;
+        }
+
+        data.forEach(item => {
+            container.innerHTML += `
+                <div class="analytics-card">
+                    <div class="card-icon">📌</div>
+
+                    <div class="card-content">
+                        <h3>${item.total_posts}</h3>
+                        <p>${item.category}</p>
+                    </div>
+                </div>
+            `;
+        });
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+
+async function loadPostsPerCategories() {
+    try {
+        const res = await fetch("/api/analytics/posts-per-categories", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        const data = await res.json();
+
+        const container =
+            document.getElementById("categoryAnalyticsContainer");
+
+        container.innerHTML = "<h2>Posts per Categories</h2>";
+
+        if (data.length === 0) {
+            container.innerHTML += "<p>No category data found</p>";
+            return;
+        }
+
+        data.forEach(item => {
+            container.innerHTML += `
+                <div class="analytics-card">
+                    <div class="card-icon">📂</div>
+
+                    <div class="card-content">
+                        <h3>${item.total_posts}</h3>
+                        <p>${item.category} Posts</p>
+                    </div>
+                </div>
+            `;
+        });
+
+    } catch (err) {
+        console.log(err);
+    }
+}

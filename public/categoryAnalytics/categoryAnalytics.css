@@ -1,0 +1,48 @@
+body{
+    margin: 0;
+    padding: 40px;
+    font-family: Arial, sans-serif;
+    background: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+#categoryContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.analytics-card{
+    background: white;
+    width: 280px;
+    padding: 30px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+    border-left: 6px solid #1877f2;
+}
+
+.analytics-card:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+.analytics-card h3{
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.analytics-card p{
+    font-size: 44px;
+    font-weight: bold;
+    margin: 0;
+    color: #1877f2;
+}

@@ -189,3 +189,70 @@ exports.getRequestsPerDay = (req, res) => {
         res.json(results);
     });
 };
+
+exports.getMostUsedCategories = (req, res) => {
+    const user_id = req.user.id;
+
+    const sql = `
+        SELECT 
+            categories.category,
+            COUNT(posts.id) AS total_posts
+        FROM (
+            SELECT 'Web Development' AS category
+            UNION SELECT 'Mobile App'
+            UNION SELECT 'AI/ML'
+            UNION SELECT 'Database'
+            UNION SELECT 'Networking'
+        ) AS categories
+        LEFT JOIN posts 
+            ON posts.category = categories.category
+            AND posts.user_id = ?
+        GROUP BY categories.category
+        ORDER BY total_posts DESC
+    `;
+
+    db.query(sql, [user_id], (err, results) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({
+                message: "Database error"
+            });
+        }
+
+        res.json(results);
+    });
+};
+
+
+exports.getPostsPerCategories = (req, res) => {
+    const user_id = req.user.id;
+
+    const sql = `
+        SELECT 
+            categories.category,
+            COUNT(posts.id) AS total_posts
+        FROM (
+            SELECT 'Web Development' AS category
+            UNION SELECT 'Mobile App'
+            UNION SELECT 'AI/ML'
+            UNION SELECT 'Database'
+            UNION SELECT 'Networking'
+        ) AS categories
+        LEFT JOIN posts 
+            ON posts.category = categories.category
+            AND posts.user_id = ?
+        GROUP BY categories.category
+        ORDER BY categories.category ASC
+    `;
+
+    db.query(sql, [user_id], (err, results) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({
+                message: "Database error"
+            });
+        }
+
+        res.json(results);
+    });
+};

@@ -69,3 +69,29 @@ exports.getUserPostCount = async (req, res) => {
         });
     });
 };
+
+
+exports.getPostsPerDay = (req, res) => {
+    const user_id = req.user.id;
+
+    const sql = `
+        SELECT
+            DATE(created_at) AS post_date,
+            COUNT(*) AS total_posts
+        FROM posts
+        WHERE user_id = ?
+        GROUP BY DATE(created_at)
+        ORDER BY post_date ASC
+    `;
+
+    db.query(sql, [user_id], (err, results) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({
+                message: "Database error"
+            });
+        }
+
+        res.json(results);
+    });
+};

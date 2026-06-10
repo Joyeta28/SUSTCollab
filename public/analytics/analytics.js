@@ -118,3 +118,74 @@ async function loadAnalytics() {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+async function loadPostsPerDay() {
+    const token = localStorage.getItem("token");
+
+    const res = await fetch(
+        "/api/analytics/posts-per-day",
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    );
+
+    const data = await res.json();
+
+    const container =
+        document.getElementById("postsPerDayContainer");
+
+    container.innerHTML = "";
+
+    data.forEach(item => {
+        container.innerHTML += `
+            <div class="analytics-card">
+                <h4>${item.post_date}</h4>
+                <p>${item.total_posts} Posts</p>
+            </div>
+        `;
+    });
+}
+
+loadPostsPerDay()

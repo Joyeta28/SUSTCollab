@@ -6,6 +6,8 @@ const verifyToken = require("../middleware/authMiddleware");
 const {getTotalRequestsSent,getTotalAcceptedRequests} = require("../controllers/analyticsController")
 
 
-router.get("/analytics/total-sent", verifyToken, getTotalRequestsSent);
+router.get("/total-sent", verifyToken, getTotalRequestsSent);
 
-router.get( "/analytics/total-accepted",verifyToken, getTotalAcceptedRequests);
+router.get( "/total-accepted",verifyToken, getTotalAcceptedRequests);
+
+module.exports = router;

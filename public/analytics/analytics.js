@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         loggedInUserID = data.user.id;
 
         loadAnalytics();
+        loadAcceptanceRate();
 
     }catch (err) {
         console.log(err);
@@ -120,45 +121,6 @@ async function loadAnalytics() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 async function loadPostsPerDay() {
     const token = localStorage.getItem("token");
 
@@ -189,3 +151,21 @@ async function loadPostsPerDay() {
 }
 
 loadPostsPerDay()
+async function loadAcceptanceRate() {
+    try {
+        const res = await fetch("/api/analytics/acceptance-rate", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        const data = await res.json();
+
+        document.getElementById("acceptance-rate").innerText =
+            data.acceptanceRate + "%";
+
+
+    } catch (err) {
+        console.log(err);
+    }
+}

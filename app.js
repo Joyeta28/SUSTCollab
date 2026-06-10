@@ -14,6 +14,7 @@ const postRoutes = require("./routers/postRoutes");
 const requestRoutes = require("./routers/requestRoutes");
 const projectRoutes = require("./routers/projectRoutes");
 const reportRoutes = require("./routers/reportRoutes");
+const analyticsRoutes = require("./routers/analyticsRoutes")
 
 
 app.use("/api/auth",authRoutes)
@@ -22,6 +23,7 @@ app.use("/api/posts", postRoutes);
 app.use("/api/reports", reportRoutes);
 app.use("/api/requests", requestRoutes);
 app.use("/api/projects", projectRoutes)
+app.use("/api/analytics", analyticsRoutes)
 
 const db = require("./config/db")
 
